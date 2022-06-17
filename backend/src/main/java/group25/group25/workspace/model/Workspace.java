@@ -5,6 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "workspaces")
 public class Workspace {
+    public Workspace() {
+        this.title = "New Workspace";
+        this.description = "";
+    }
+
     public Workspace (String title, String description) {
         this.title = title;
         this.description = description;

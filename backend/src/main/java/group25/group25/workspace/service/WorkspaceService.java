@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface WorkspaceService {
     public void saveWorkspace(Workspace workspace);
-    public void assignWorkspaceUser(UserAccessWorkspace access);
+    public boolean assignWorkspaceUser(UserAccessWorkspace access);
 }

@@ -21,7 +21,20 @@ public class WorkspaceController {
 
     @PostMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")
     public String assignWorkspaceUser(@RequestBody UserAccessWorkspace access) {
-        workspaceService.assignWorkspaceUser(access);
-        return "Successfully assigned user with id " + access.getUserId() + " to workspace with id " + access.getWorkspaceId();
+        if (workspaceService.assignWorkspaceUser(access)) {
+            // User/workspace pair was added to database
+            return "Successfully assigned user with id "
+                    + access.getUserId()
+                    + " to workspace with id "
+                    + access.getWorkspaceId();
+        }
+        else {
+            // User/workspace pair already exists
+            return "Could not assigned user with id "
+                    + access.getUserId()
+                    + " to workspace with id "
+                    + access.getWorkspaceId()
+                    + "; pair already exists";
+        }
     }
 }

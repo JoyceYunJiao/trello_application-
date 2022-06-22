@@ -12,7 +12,4 @@ import java.util.List;
 
 @Repository
 public interface WorkspaceRepository extends JpaRepository<Workspace, Integer> {
-    //TODO: This does not work for some reason
-    @Query(value = "SELECT u FROM User u INNER JOIN UserAccessWorkspace a WHERE a.workspaceId = :id")
-    public List<User> assignedUsers(@Param(value = "id") int workspaceId);
 }

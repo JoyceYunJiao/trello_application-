@@ -6,12 +6,11 @@ import group25.group25.workspace.model.Workspace;
 import group25.group25.workspace.repository.WorkspaceRepository;
 import group25.group25.workspace.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 public class WorkspaceController {
@@ -20,9 +19,17 @@ public class WorkspaceController {
     @Autowired
     WorkspaceRepository workspaceRepository;
 
-    @PostMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
-    public List<User> getAssignedUsers(@RequestBody Workspace workspace) {
-        return workspaceRepository.assignedUsers(workspace.getId());
+    @GetMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
+    public Set<User> getAssignedUsers(@RequestBody Workspace workspace) {
+        Optional<Workspace> w = workspaceRepository.findById(workspace.getId());
+        if (w.isPresent()) {
+            Workspace ws = w.get();
+            return ws.getAssignedUsers();
+        }
+
+        // Workspace not found, return null
+        System.out.println("Could not retrieve assigned users from workspace with id " + workspace.getId() + ", workspace not found");
+        return null;
     }
 
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
@@ -31,7 +38,7 @@ public class WorkspaceController {
         return "Saved workspace data successfully with id " + workspace.getId();
     }
 
-    @PostMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")
+    @PutMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")
     public String assignWorkspaceUser(@RequestBody UserAccessWorkspace access) {
         if (workspaceService.assignWorkspaceUser(access)) {
             // User/workspace pair was added to database

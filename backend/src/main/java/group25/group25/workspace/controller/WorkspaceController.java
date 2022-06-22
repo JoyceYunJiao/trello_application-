@@ -19,6 +19,11 @@ public class WorkspaceController {
     @Autowired
     WorkspaceRepository workspaceRepository;
 
+    @GetMapping(path = "/getAllWorkspaces", produces = "application/json")
+    public List<Workspace> getAllWorkspaces() {
+        return workspaceService.findAll();
+    }
+
     @GetMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
     public Set<User> getAssignedUsers(@RequestBody Workspace workspace) {
         Optional<Workspace> w = workspaceRepository.findById(workspace.getId());

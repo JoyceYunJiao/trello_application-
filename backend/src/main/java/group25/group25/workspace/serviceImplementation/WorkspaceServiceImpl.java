@@ -8,6 +8,8 @@ import group25.group25.workspace.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class WorkspaceServiceImpl implements WorkspaceService {
     @Autowired
@@ -34,5 +36,10 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         // Save new access to table
         accessRepository.save(access);
         return true;
+    }
+
+    @Override
+    public List<Workspace> findAll() {
+        return workspaceRepository.findAll();
     }
 }

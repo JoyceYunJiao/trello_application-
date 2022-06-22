@@ -1,5 +1,6 @@
 package group25.group25.workspace.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import group25.group25.usermanagement.model.User;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Workspace {
             joinColumns = @JoinColumn(name = "workspace_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @JsonIgnore
     private Set<User> assignedUsers = new HashSet<>();
 
     public Workspace() {

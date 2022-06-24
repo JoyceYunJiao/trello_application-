@@ -27,6 +27,17 @@ public class users {
     @Column(name = "user_username")
     private String username;
 
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        this.securityAnswer = securityAnswer;
+    }
+
+    @Column(name = "security_answer")
+    private String securityAnswer;
+
     public users(String email, String firstName, String lastName, String password, String username) {
         this.email = email;
         this.firstName = firstName;

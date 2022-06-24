@@ -18,9 +18,12 @@ public interface CustomerRepository extends CrudRepository<users, Integer> {
     @Query("SELECT u FROM users u WHERE u.email= :mail")
     public users findByEmail(@Param("mail") String email);
 
+    @Query("SELECT u.securityAnswer FROM users u WHERE u.email= :mail")
+    public String showSecurityAnswer(@Param("mail") String email);
+
     @Modifying
     @Query("UPDATE User u SET u.password =?1 WHERE u.email =?2")
-    public void updateUserNameByEmail(String newPassword, String email);
+    public void updateUserPasswordByEmail(String newPassword, String email);
 
     public users findByResetPasswordToken(String token);
 }

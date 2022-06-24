@@ -18,13 +18,6 @@ public class passwordController {
     @Autowired
     private CustomerRepository customerRepository;
 
-
-    @GetMapping("/delete")
-    public String delete() {
-        return "This is the delete request";
-    }
-
-
     @GetMapping(path = "/showForgotPassword/{mail}")
     public users showForgotPassword(@PathVariable String mail){
 //        System.out.println(customerRepository.findByEmail(mail));
@@ -32,9 +25,14 @@ public class passwordController {
 //        return customerRepository.findByEmail("test@email.com");
     }
 
-    @PostMapping (path = "/updateUserNameByEmail")
-    public void updateUserNameByEmail(@RequestParam("newPassword") String newPassword,@RequestParam("email") String email){
-        customerRepository.updateUserNameByEmail(newPassword,email);
+    @GetMapping(path = "/showSecurityAnswer/{mail}")
+    public String showSecurityAnswer(@PathVariable String mail){
+        return customerRepository.showSecurityAnswer(mail);
+    }
+
+    @PostMapping (path = "/updateUserPasswordByEmail")
+    public void updateUserPasswordByEmail(@RequestParam("newPassword") String newPassword,@RequestParam("email") String email){
+        customerRepository.updateUserPasswordByEmail(newPassword,email);
         System.out.println("updateUserNameByEmail success");
     }
 
@@ -42,14 +40,8 @@ public class passwordController {
     public users editPassword(@PathVariable String mail,String newPassword){
         users targetUser = customerRepository.findByEmail(mail);
         targetUser.setPassword(newPassword);
-        //存入数据库
-
         return targetUser;
     }
-
-
-
-
 
 
 

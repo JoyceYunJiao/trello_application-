@@ -4,6 +4,7 @@ import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 import Workspaces from './pages/Workspaces';
 import Navigation from './components/Navigation';
 import './App.css';
+import NewWorkspace from './pages/NewWorkspace';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           {/* Show workspaces page */}
           <Route path="/workspaces" element={<Workspaces/>} />
-
+          {/* Show new workspace page */}
+          <Route path="/newWorkspace" element={<NewWorkspace/>} />
 
         </Routes>
       </Router>

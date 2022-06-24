@@ -18,10 +18,10 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     private UserAccessWorkspaceRepository accessRepository;
 
     @Override
-    public void saveWorkspace(Workspace workspace) {
+    public Workspace saveWorkspace(Workspace workspace) {
         workspace.setDescription(workspace.getDescription());
         workspace.setTitle(workspace.getTitle());
-        workspaceRepository.save(workspace);
+        return workspaceRepository.save(workspace);
     }
 
     @Override

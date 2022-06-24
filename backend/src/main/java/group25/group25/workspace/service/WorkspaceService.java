@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface WorkspaceService {
-    public void saveWorkspace(Workspace workspace);
+    public Workspace saveWorkspace(Workspace workspace);
     public boolean assignWorkspaceUser(UserAccessWorkspace access);
     public List<Workspace> findAll();
 }

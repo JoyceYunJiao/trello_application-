@@ -1,17 +1,20 @@
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 function Navigation() {
   return (
-    <nav className="navigation">
-      <ul className="navigation__list">
-        <li className="navigation__item">
-            <Link to="/workspaces" className="navigation__link">
-                Workspaces
-            </Link>
-        </li>
-        </ul>
-    </nav>
-    );
+    <Navbar bg="primary" variant='dark'>
+      <Container>
+        <Navbar.Brand as={Link} to="/">Trello Clone</Navbar.Brand>
+
+        <Nav className='me-auto'>
+          <Nav.Link as={Link} to={"/workspaces"}>
+            Workspaces
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default Navigation;

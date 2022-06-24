@@ -20,6 +20,7 @@ public class WorkspaceController {
     WorkspaceRepository workspaceRepository;
 
     @GetMapping(path = "/getAllWorkspaces", produces = "application/json")
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Workspace> getAllWorkspaces() {
         return workspaceService.findAll();
     }

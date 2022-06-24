@@ -14,6 +14,10 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -35,5 +39,22 @@ public class WorkspaceServiceTest {
         Workspace saved = workspaceService.saveWorkspace(workspace);
 
         Assertions.assertNotNull(saved);
+    }
+
+    @Test
+    void testFindAll() {
+        List<Workspace> workspaces = new ArrayList<>();
+
+        when(workspaceRepository.findAll()).thenReturn(workspaces);
+
+        List<Workspace> workspacesFromFindAll = workspaceService.findAll();
+
+        Assertions.assertNotNull(workspaces);
+        Assertions.assertNotNull(workspacesFromFindAll);
+    }
+
+    @Test
+    void testAssignWorkspaceUser() {
+        
     }
 }

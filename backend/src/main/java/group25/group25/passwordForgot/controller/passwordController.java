@@ -13,27 +13,36 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 //@SpringBootApplication
-//@RequestMapping("/default")
 public class passwordController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping(path = "/showForgotPassword/{mail}")
-    public users showForgotPassword(@PathVariable String mail){
-//        System.out.println(customerRepository.findByEmail(mail));
-        return customerRepository.findByEmail(mail);
-//        return customerRepository.findByEmail("test@email.com");
+    @Autowired
+    private CustomerServices customerServices;
+
+    //网上找的通过service操作的 已被证实成功
+    @GetMapping("/forgot_password")
+    public void showForgotPasswordForm(String mail, String newName) {
+        customerServices.userLname(mail,newName);
     }
 
-    @GetMapping(path = "/showSecurityAnswer/{mail}")
-    public String showSecurityAnswer(@PathVariable String mail){
+    //显示密码
+    @GetMapping(path = "/showForgotPassword/{mail}")
+    public users showForgotPassword(@PathVariable String mail){
+        return customerRepository.findByEmail(mail);
+    }
+
+    //获取安全问题回答与否
+    @GetMapping(path = "/showSecurityAnswer")
+    public String showSecurityAnswer(@RequestParam("mail") String mail){
         return customerRepository.showSecurityAnswer(mail);
     }
 
+    //根据输入的mail更新password
     @PostMapping (path = "/updateUserPasswordByEmail")
     public void updateUserPasswordByEmail(@RequestParam("newPassword") String newPassword,@RequestParam("email") String email){
         customerRepository.updateUserPasswordByEmail(newPassword,email);
-        System.out.println("updateUserNameByEmail success");
+//        System.out.println("updateUserNameByEmail success");
     }
 
     @GetMapping(path = "/editPassword/{mail}")
@@ -43,18 +52,6 @@ public class passwordController {
         return targetUser;
     }
 
-
-
-    @RequestMapping("/test1")
-    public Object test1() {
-        return customerRepository.findById(2);
-    }
-
-
-    @RequestMapping(method = RequestMethod.GET, value = "/account/{id}")
-    public users getAccount(@PathVariable String id) {
-        return CustomerServices.getById(id);
-    }
 
 }
 

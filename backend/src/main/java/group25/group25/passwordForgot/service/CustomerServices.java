@@ -16,13 +16,22 @@ public class CustomerServices {
     @Autowired
     private CustomerRepository customerRepo;
 
-    public void updateResetPasswordToken(String token, String email)  {
-    users customer = customerRepo.findByEmail(email);
-    if (customer != null) {
-        customer.setResetPasswordToken(token);
-        customerRepo.save(customer);
-    } else {
-       System.out.println("Could not find any customer with the email " + email);
+
+//    public void saveWorkspace(users user) {
+//
+//        customerRepo.setDescription(user.getDescription());
+//        customerRepo.setWorkspaceName(user.getWorkspaceName());
+//        workspaceRepository.save(workspace);
+//    }
+
+
+    public void userLname(String mail, String newName)  {
+        users customer = customerRepo.findByEmail(mail);
+        if (customer != null) {
+            customer.setLastName(newName);
+            customerRepo.save(customer);
+        } else {
+           System.out.println("Could not find any customer with the email " + mail);
         }
     }
 

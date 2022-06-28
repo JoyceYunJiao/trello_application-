@@ -1,17 +1,16 @@
-ackage group25.group25.boardmanagement.service;
+package group25.group25.board.service;
 
-import group25.group25.usermanagement.repository.BoardRepository;
-import group25.group25.usermanagement.repository.BoardRepository;
+import group25.group25.board.model.Board;
+import group25.group25.board.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class BoardServices {
-    @Autowired
-    private BoardRepository boardRepository;
+@Service
+public interface BoardService {
 
-    public boolean login(String email, String password) {
+        public void deleteBoard(Board board);
 
-        return false;
+        public Board addBoard(Board board);
     }
-}
+

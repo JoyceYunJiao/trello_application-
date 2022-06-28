@@ -5,6 +5,7 @@ import Workspaces from './pages/Workspaces';
 import Navigation from './components/Navigation';
 import './App.css';
 import NewWorkspace from './pages/NewWorkspace';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/workspaces" element={<Workspaces/>} />
           {/* Show new workspace page */}
           <Route path="/newWorkspace" element={<NewWorkspace/>} />
+          {/* Show user login page */}
+          <Route path="/login" element={<Login/>} />
 
         </Routes>
       </Router>

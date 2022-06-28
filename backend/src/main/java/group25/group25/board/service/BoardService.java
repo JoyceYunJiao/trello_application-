@@ -1,0 +1,16 @@
+package group25.group25.board.service;
+
+import group25.group25.board.model.Board;
+import group25.group25.board.repository.BoardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface BoardService {
+
+        public void deleteBoard(Board board);
+
+        public Board addBoard(Board board);
+    }
+

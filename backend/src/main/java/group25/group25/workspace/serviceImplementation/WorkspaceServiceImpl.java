@@ -19,16 +19,11 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Override
     public void saveWorkspace(Workspace workspace) {
-        workspace.setDescription(workspace.getDescription());
-        workspace.setTitle(workspace.getTitle());
         workspaceRepository.save(workspace);
     }
 
     @Override
     public boolean assignWorkspaceUser(UserAccessWorkspace access) {
-        access.setUserId(access.getUserId());
-        access.setWorkspaceId(access.getWorkspaceId());
-
         if (accessRepository.existsByUserIdAndWorkspaceId(access.getUserId(), access.getWorkspaceId())==1)
             // This user is already assigned to this workspace
             return false;

@@ -39,6 +39,7 @@ public class WorkspaceController {
     }
 
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
+    @CrossOrigin(origins = "http://localhost:3000")
     public String addWorkspace(@RequestBody Workspace workspace) {
         workspaceService.saveWorkspace(workspace);
         return "Saved workspace data successfully with id " + workspace.getId();

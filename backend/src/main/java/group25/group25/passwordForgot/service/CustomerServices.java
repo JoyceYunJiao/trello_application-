@@ -35,6 +35,14 @@ public class CustomerServices {
         }
     }
 
+    public boolean sameSecureAns(String ans1, String ans2)  {
+        if (ans1.equals(ans2)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public users getByResetPasswordToken(String token) {
         return customerRepo.findByResetPasswordToken(token);
     }

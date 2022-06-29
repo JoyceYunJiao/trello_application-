@@ -1,0 +1,11 @@
+java:
+  stages:
+    - build
+  
+  maven-build:
+    stage: build
+    script: "mvn package"
+    artifacts:
+      reports:
+        junit:
+          - target/surefire-reports/TEST-*.xml

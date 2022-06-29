@@ -1,6 +1,7 @@
 package group25.group25.board.model;
 
 import javax.persistence.*;
+import group25.group25.workspace.model.Workspace;
 
 @Entity
 @Table(name = "boards")
@@ -9,10 +10,10 @@ public class Board {
     public Board() {
     }
 
-    public Board(Long boardId, int workSpaceId, String dateCreated,
+    public Board(Long boardId, String dateCreated,
                  String description, String boardTitle) {
         this.boardId = boardId;
-        this.workSpaceId = workSpaceId;
+
         this.dateCreated = dateCreated;
         this.description = description;
         this.boardTitle = boardTitle;
@@ -28,24 +29,28 @@ public class Board {
 
     @Column(name = "description")
     private String description;
+//
+//    @Column(name = "workspace_id")
+//    private int workSpaceId;
 
-    @Column(name = "workspace_id")
-    private int workSpaceId;
+    @ManyToOne
+    @JoinColumn(name = "workspace_id")
+    private Workspace workspace;
 
     @Column(name = "date_created")
     private String dateCreated;
 
-    public int getWorksapce_Id() {
-        return workSpaceId;
-    }
+//    public int getWorksapce_Id() {
+//        return workSpaceId;
+//    }
 
     public String getBoardTitle() { return boardTitle; }
 
     public void setBoardTitle(String boardTitle) { this.boardTitle = boardTitle; }
 
-    public void setWorksapce_Id(String worksapce_Id) {
-        this.workSpaceId = workSpaceId;
-    }
+//    public void setWorksapce_Id(String worksapce_Id) {
+//        this.workSpaceId = workSpaceId;
+//    }
 
     public String getDate_created() {
         return dateCreated;

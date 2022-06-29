@@ -5,7 +5,7 @@ stages:
 
 maven-build:
   stage: build
-  script: "mvn package"
+  script: "mvn package -f backend/pom.xml"
   artifacts:
     reports:
       junit:

@@ -7,6 +7,8 @@ maven-build:
   stage: build
   script: "mvn package -f backend/pom.xml"
   artifacts:
+    paths:
+      - target/surefire-reports/TEST-*.xml
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml

@@ -6,11 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface BoardService {
 
-        public void deleteBoard(Board board);
+    public List<Board> findAll();
 
-        public Board addBoard(Board board);
-    }
+    public void deleteBoard(Board board);
+
+    public Board addBoard(Board board);
+
+    public Board getBoard(long id);
+}
 

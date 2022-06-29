@@ -5,6 +5,8 @@ import group25.group25.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class BoardController {
     @Autowired
@@ -20,6 +22,16 @@ public class BoardController {
     public String deleteBoard(@RequestBody Board board){
         boardService.deleteBoard(board);
         return "board deleted successfully";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getAllBoards")
+    public List<Board> getAllBoards() {
+        return boardService.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/board/{id}")
+    public Board getBoard(@PathVariable("id") long id) {
+        return boardService.getBoard(id);
     }
 
 }

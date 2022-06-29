@@ -12,26 +12,23 @@ public class Board {
 
     public Board(Long boardId, String dateCreated,
                  String description, String boardTitle) {
-        this.boardId = boardId;
+        this.id = boardId;
 
         this.dateCreated = dateCreated;
         this.description = description;
-        this.boardTitle = boardTitle;
+        this.title = boardTitle;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
-    private Long boardId;
+    private Long id;
 
     @Column(name = "board_title")
-    private String boardTitle;
+    private String title;
 
-    @Column(name = "description")
+    @Column(name = "board_description")
     private String description;
-//
-//    @Column(name = "workspace_id")
-//    private int workSpaceId;
 
     @ManyToOne
     @JoinColumn(name = "workspace_id")
@@ -40,25 +37,25 @@ public class Board {
     @Column(name = "date_created")
     private String dateCreated;
 
-//    public int getWorksapce_Id() {
-//        return workSpaceId;
-//    }
+    public Workspace getWorkspace() {
+        return workspace;
+    }
 
-    public String getBoardTitle() { return boardTitle; }
+    public void setWorkspace(Workspace workspace) {
+        this.workspace = workspace;
+    }
 
-    public void setBoardTitle(String boardTitle) { this.boardTitle = boardTitle; }
-
-//    public void setWorksapce_Id(String worksapce_Id) {
-//        this.workSpaceId = workSpaceId;
-//    }
-
-    public String getDate_created() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDate_created(String date_created) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) { this.title = title; }
 
     public String getDescription() {
         return description;
@@ -68,12 +65,12 @@ public class Board {
         this.description = description;
     }
 
-    public Long getBoardId() {
-        return boardId;
+    public Long getId() {
+        return id;
     }
 
-    public void setBoardId(Long boardId) {
-        this.boardId = boardId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 

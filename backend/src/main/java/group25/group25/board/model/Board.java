@@ -1,6 +1,8 @@
 package group25.group25.board.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import group25.group25.workspace.model.Workspace;
 
 @Entity
@@ -31,7 +33,8 @@ public class Board {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "workspace_id")
+    @JoinColumn(name = "workspace_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Workspace workspace;
 
     @Column(name = "date_created")

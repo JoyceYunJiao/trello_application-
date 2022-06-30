@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @ManyToMany(mappedBy = "assignedUsers")
-    private Set<Workspace> assignedTo = new HashSet<>();
+    private Set<Workspace> workspaces = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -90,5 +90,9 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Set<Workspace> getWorkspaces() {
+        return workspaces;
     }
 }

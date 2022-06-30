@@ -11,4 +11,5 @@ public interface WorkspaceService {
     public Workspace saveWorkspace(Workspace workspace);
     public boolean assignWorkspaceUser(UserAccessWorkspace access);
     public List<Workspace> findAll();
+    public Workspace findById(int id);
 }

@@ -1,4 +1,4 @@
-# image: maven:3.8.3-openjdk-17
+image: maven:3.8.3-openjdk-17
 
 stages:
   - build
@@ -9,15 +9,15 @@ maven-build:
   tags:
     - ugrad
   script:
-    - cd backend
-    - mvn clean package -DskipTests
-    # - "mvn package -f backend/pom.xml"
-  # artifacts:
-  #   paths:
-  #     - target/surefire-reports/TEST-*.xml
-  #   reports:
-  #     junit:
-  #       - target/surefire-reports/TEST-*.xml
+    # - cd backend
+    # - mvn clean package -DskipTests
+    - "mvn package -f backend/pom.xml"
+  artifacts:
+    paths:
+      - target/surefire-reports/TEST-*.xml
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
 
 test-job:
   stage: test

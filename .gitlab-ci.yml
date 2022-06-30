@@ -14,13 +14,6 @@ maven-build:
       - backend/target/*.jar
     expire_in: 1 week
 
-  # artifacts:
-  #   paths:
-  #     - target/surefire-reports/TEST-*.xml
-  #   reports:
-  #     junit:
-  #       - target/surefire-reports/TEST-*.xml
-
 test-job:
   stage: test
   script:

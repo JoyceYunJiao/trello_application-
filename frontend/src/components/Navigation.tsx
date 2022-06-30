@@ -15,6 +15,10 @@ function Navigation() {
             <Nav.Link as={Link} to={"/newWorkspace"}>
                 New Workspace
             </Nav.Link>
+
+            <Nav.Link as={Link} to={"/login"}>
+                Login
+            </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

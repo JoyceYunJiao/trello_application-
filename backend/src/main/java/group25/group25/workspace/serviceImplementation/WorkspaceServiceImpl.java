@@ -18,17 +18,19 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     private UserAccessWorkspaceRepository accessRepository;
 
     @Override
+<<<<<<< HEAD
     public Workspace saveWorkspace(Workspace workspace) {
         workspace.setDescription(workspace.getDescription());
         workspace.setTitle(workspace.getTitle());
         return workspaceRepository.save(workspace);
+=======
+    public void saveWorkspace(Workspace workspace) {
+        workspaceRepository.save(workspace);
+>>>>>>> frontend
     }
 
     @Override
     public boolean assignWorkspaceUser(UserAccessWorkspace access) {
-        access.setUserId(access.getUserId());
-        access.setWorkspaceId(access.getWorkspaceId());
-
         if (accessRepository.existsByUserIdAndWorkspaceId(access.getUserId(), access.getWorkspaceId())==1)
             // This user is already assigned to this workspace
             return false;

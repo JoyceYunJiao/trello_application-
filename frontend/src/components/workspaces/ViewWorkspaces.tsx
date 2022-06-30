@@ -1,4 +1,4 @@
-import { Card, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Workspace from "./Workspace";
 
 function ViewWorkspaces(props:any) {
@@ -7,7 +7,7 @@ function ViewWorkspaces(props:any) {
             {
                 props.workspaces.map((workspace:any) => {
                     return (
-                        <Workspace workspace={workspace}/>
+                        <Workspace workspace={workspace} key={workspace.id}/>
                     );
                 })
             }

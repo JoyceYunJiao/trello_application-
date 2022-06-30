@@ -29,9 +29,8 @@ public class WorkspaceController {
     }
 
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
-    public String addWorkspace(@RequestBody Workspace workspace) {
-        workspaceService.saveWorkspace(workspace);
-        return "Saved workspace data successfully with id " + workspace.getId();
+    public Workspace addWorkspace(@RequestBody Workspace workspace) {
+        return workspaceService.saveWorkspace(workspace);
     }
 
     @PutMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")

@@ -6,8 +6,6 @@ stages:
 
 maven-build:
   stage: build
-  tags:
-    - ugrad
   script:
     - cd backend
     - mvn clean package -DskipTests
@@ -22,6 +20,5 @@ maven-build:
 test-job:
   stage: test
   script:
-    - echo "Running tests (pretending actually)..."
-    - sleep 10
-    - echo "Fake test coverage is like 5%"
+    - cd backend
+    - mvn clean verify

@@ -27,7 +27,7 @@ test-job:
     - cd backend
     - mvn clean verify
   artifacts:
-    retports:
+    reports:
       junit:
         - backend/target/surefire-reports/TEST-*.xml
         - backend/target/failsafe-reports/TEST-*.xml

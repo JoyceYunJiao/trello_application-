@@ -9,7 +9,11 @@ maven-build:
   script:
     - cd backend
     - mvn clean package -DskipTests
-  #   - "mvn package -f backend/pom.xml"
+  artifacts:
+    paths:
+      - backend/target/*.jar
+    expire_in: 1 week
+
   # artifacts:
   #   paths:
   #     - target/surefire-reports/TEST-*.xml
@@ -22,3 +26,9 @@ test-job:
   script:
     - cd backend
     - mvn clean verify
+  artifacts:
+    retports:
+      junit:
+        - backend/target/surefire-reports/TEST-*.xml
+        - backend/target/failsafe-reports/TEST-*.xml
+    expire_in: 1 week

@@ -6,8 +6,11 @@ stages:
 
 maven-build:
   stage: build
+  tags:
+    - ugrad
   script:
-    - mvn clean package -DskipTests 
+    - cd backend
+    - mvn clean package -DskipTests
     # - "mvn package -f backend/pom.xml"
   # artifacts:
   #   paths:

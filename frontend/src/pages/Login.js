@@ -5,10 +5,11 @@ function LoginPage(){
     const history = useHistory();
 
     function loginUserHandler(user){
-        fetch('http://localhost:9001/updateUserPasswordByEmail')
+        // link to login inside fetch
+        fetch("")
         .then(() => {
             // check email and password format
-            history.replace("/home")})
+            history.replace("/Home")})
     }
     return (
         <section>

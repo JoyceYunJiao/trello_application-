@@ -18,7 +18,7 @@ function App() {
           <RegisterPage />
         </Route>
 
-        <Route path={["/","/Login"]}exact>
+        <Route path="/Login">
           <LoginPage />
         </Route>
 
@@ -26,7 +26,7 @@ function App() {
           <ForgotPassword />
         </Route>
 
-          <Route path="/Home">
+          <Route path={["/","/Home"]}exact>
             <HomePage />
           </Route>
       </Switch>

@@ -23,7 +23,7 @@ function RegisterForm(props){
             <input type="text" required placeholder="Full Name" ref={fullNameRef}/>
             <input type="email" required placeholder="Email" ref={emailRef}/>
             <input type="password" required placeholder="Password" ref={passwordRef}/>
-            <input type="text" required placeholder="Security Answer" ref={answerRef}/>
+            <input type="text" required placeholder="Name of first pet" ref={answerRef}/>
             <button>Submit</button>
 
         </form>

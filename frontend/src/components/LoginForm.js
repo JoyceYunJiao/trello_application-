@@ -4,7 +4,7 @@ function LoginForm(props){
     const emailRef = useRef();
     const passwordRef = useRef();
 
-    function submitRegisterForm(event){
+    function submitLoginForm(event){
         event.preventDefault();
         const email =emailRef.current.value;
         const password =passwordRef.current.value;
@@ -15,7 +15,7 @@ function LoginForm(props){
     }
 
     return(
-        <form onSubmit={submitRegisterForm}> 
+        <form onSubmit={submitLoginForm}> 
             <input type="email" required placeholder="Email" ref={emailRef}/>
             <input type="password" required placeholder="Password" ref={passwordRef}/>
             <button>Submit</button>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Workspace from "../components/Workspace";
 
@@ -12,7 +12,6 @@ function ViewWorkspacePage(props:any) {
     function getWorkspace() {
         axios.get("http://localhost:8080/getWorkspace/" + id)
             .then(response => {
-                console.log("Getting something");
                 setWorkspaceData(response.data);
                 setLoading(false);
             });
@@ -29,6 +28,7 @@ function ViewWorkspacePage(props:any) {
     return (
         <Container>
             <Workspace workspace={workspaceData}/>
+            <Button href={"/workspaces/"+id+"/createBoard"}>Create Board</Button>
         </Container>
     );
 }

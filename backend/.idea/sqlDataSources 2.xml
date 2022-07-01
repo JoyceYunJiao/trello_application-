@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="4e77b4c6-2e76-4238-a94d-c27d680c5d00" name="group25/Hibernate Mapping">
+      <data-sources db="5ff3f7f1-f68d-4b5b-acb1-111bbac37b8c" />
+    </mapping>
+    <mapping uuid="b9cb2f49-eafa-4216-9a83-750ed19908b0" name="group25/Hibernate Mapping [2]">
+      <data-sources db="5e9e6899-ae19-47ee-846d-5172cce7c5bd" />
+    </mapping>
+  </component>
+</project>

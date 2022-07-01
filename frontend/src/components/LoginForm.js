@@ -1,29 +1,23 @@
 import React, { useRef } from "react";
 
-function RegisterForm(props){
-    const fullNameRef = useRef();
+function LoginForm(props){
     const emailRef = useRef();
     const passwordRef = useRef();
-    const answerRef = useRef();
 
     function submitRegisterForm(event){
         event.preventDefault();
-        const fullName =fullNameRef.current.value;
         const email =emailRef.current.value;
         const password =passwordRef.current.value;
-        const answer = answerRef.current.value;
-        const user = {fullName,email,password,answer}
+        const user = {email,password}
         // console.log(user);
-        props.registerUser(user);
+        props.loginUser(user);
 
     }
 
     return(
         <form onSubmit={submitRegisterForm}> 
-            <input type="text" required placeholder="Full Name" ref={fullNameRef}/>
             <input type="email" required placeholder="Email" ref={emailRef}/>
             <input type="password" required placeholder="Password" ref={passwordRef}/>
-            <input type="text" required placeholder="Security Answer" ref={answerRef}/>
             <button>Submit</button>
 
         </form>
@@ -31,4 +25,4 @@ function RegisterForm(props){
     );
 }
 
-export default RegisterForm;
+export default LoginForm;

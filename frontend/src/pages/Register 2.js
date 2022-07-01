@@ -7,9 +7,9 @@ function RegisterPage(){
     const history = useHistory();
     
     function RegisterUserHandler(user){
-        fetch("localhost:3306/user/save",{
+        fetch("http://localhost:9001/updateUserPasswordByEmail",{
             method : "POST",
-            port : "3306",
+            port : "9001",
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'}
 

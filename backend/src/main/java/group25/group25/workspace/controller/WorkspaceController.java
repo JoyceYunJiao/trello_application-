@@ -23,6 +23,11 @@ public class WorkspaceController {
         return workspaceService.findAll();
     }
 
+    @GetMapping(path = "/getWorkspace/{id}", produces = "application/json")
+    public Workspace getWorkspace(@PathVariable("id") int id) {
+        return workspaceService.findById(id);
+    }
+
     @GetMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
     public Set<User> getAssignedUsers(@RequestBody Workspace workspace) {
         return workspaceService.findById(workspace.getId()).getAssignedUsers();

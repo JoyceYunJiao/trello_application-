@@ -3,14 +3,16 @@ package group25.group25.usermanagement.service;
 import group25.group25.usermanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import group25.group25.usermanagement.model.User;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserServices {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(String email, String password) {
+    public User register(User userModel) {
 
-        return false;
+        return userRepository.save(userModel);
     }
 }

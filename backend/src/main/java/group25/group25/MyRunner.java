@@ -15,6 +15,6 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        userRepository.save(new User("test@example.com", "john", "example", "1234", "johnaccount"));
+        //userRepository.save(new User("test@example.com", "john", "example", "1234", "johnaccount"));
     }
 }

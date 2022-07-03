@@ -7,9 +7,8 @@ function RegisterPage(){
     const history = useHistory();
     
     function RegisterUserHandler(user){
-        fetch("localhost:8080/user/save",{
+        fetch("http://localhost:8080/user/save",{
             method : "POST",
-            port : "8080",
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'}
 

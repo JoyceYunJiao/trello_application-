@@ -6,6 +6,8 @@ import Navigation from './components/Navigation';
 import './App.css';
 import NewWorkspace from './pages/NewWorkspace';
 import Login from './pages/Login';
+import ForgotPassword from "./pages/forgotPassword"
+
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/newWorkspace" element={<NewWorkspace/>} />
           {/* Show user login page */}
           <Route path="/login" element={<Login/>} />
+          <Route path="/forgotPassword" element={<ForgotPassword/>} />
+
 
         </Routes>
       </Router>

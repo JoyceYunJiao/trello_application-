@@ -37,6 +37,9 @@ public class Board {
     @JsonIgnore
     private Workspace workspace;
 
+    @Column(name="workspace_id")
+    private int workspaceId;
+
     @Column(name = "date_created")
     private String dateCreated;
 
@@ -76,5 +79,11 @@ public class Board {
         this.id = id;
     }
 
+    public int getWorkspaceId() {
+        return workspaceId;
+    }
 
+    public void setWorkspaceId(int workspaceId) {
+        this.workspaceId = workspaceId;
+    }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import Board from './Board';
 
 function ViewBoards(props:any) {
     return (
@@ -9,19 +10,7 @@ function ViewBoards(props:any) {
                 {props.boards.map((board:any) => {
                     return (
                         <Grid item xs={12} sm={12} md={4} lg={3} key={board.id}>
-                            <Card elevation={6}>
-                                <CardContent>
-                                    <Typography component='h4' variant='h4'>
-                                        {board.name}
-                                    </Typography>
-                                    <Typography component='p' variant='body1'>
-                                        {board.desp}
-                                    </Typography>
-                                    <Button variant='contained' sx={{ marginTop: '16px' }}>
-                                        View All Tasks
-                                    </Button>
-                                </CardContent>
-                            </Card>
+                            <Board board={board} key={board.id}/>
                         </Grid>
                     );
                 })}

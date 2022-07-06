@@ -1,8 +1,11 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React, { useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import Boards from '../../pages/board';
 
-function CreateBoardForm() {
+function CreateBoardForm(props:any) {
+    const {id} = useParams();
+
     /* ToDo: Create board name variable using useRef */
     const boardNameRef:any = useRef();
     /* ToDo: Create board description variable using useRef */
@@ -17,15 +20,19 @@ function CreateBoardForm() {
         const boardDesp = boardNameRef.current.value;
 
         const board = {
-            name: boardName,
-            description: boardDesp
+            title: boardName,
+            description: boardDesp,
+            workspaceId: id,
+            dateCreated: new Date(),
         };
+
+        props.onChange(board);
     };
 
     return (
         <section style={{ marginTop: '32px' }}>
-            <Typography variant='h2' component='h2'>Create New Board</Typography>
-            <form /* ToDo: Add onSubmit to call createBoard */>
+            <Typography variant='h2' component='h2'>Create New Board {id}</Typography>
+            <form onSubmit={createBoard}>
                 <TextField
                     id='boardName'
                     placeholder='Board Name'

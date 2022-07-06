@@ -1,10 +1,17 @@
 package group25.group25.usermanagement.model;
 
+import group25.group25.workspace.model.Workspace;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
+    @ManyToMany(mappedBy = "assignedUsers")
+    private Set<Workspace> assignedTo = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")

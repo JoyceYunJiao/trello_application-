@@ -1,4 +1,4 @@
-package group25.group25.usermanagement.service;
+package group25.group25.usermanagement.serviceImplementation;
 
 import group25.group25.usermanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

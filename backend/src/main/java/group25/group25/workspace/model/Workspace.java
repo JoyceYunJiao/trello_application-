@@ -1,6 +1,7 @@
 package group25.group25.workspace.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import group25.group25.board.model.Board;
 import group25.group25.usermanagement.model.User;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class Workspace {
     )
     @JsonIgnore
     private Set<User> assignedUsers = new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name = "workspace_id")
+    private Set<Board> boards = new HashSet<>();
 
     public Workspace() {
         this.title = "New Workspace";
@@ -62,5 +67,9 @@ public class Workspace {
 
     public Set<User> getAssignedUsers() {
         return assignedUsers;
+    }
+
+    public Set<Board> getBoards() {
+        return boards;
     }
 }

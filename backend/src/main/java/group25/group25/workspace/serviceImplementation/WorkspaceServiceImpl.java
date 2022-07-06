@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class WorkspaceServiceImpl implements WorkspaceService {
@@ -36,5 +37,16 @@ public class WorkspaceServiceImpl implements WorkspaceService {
     @Override
     public List<Workspace> findAll() {
         return workspaceRepository.findAll();
+    }
+
+    @Override
+    public Workspace findById(int id) {
+        Optional<Workspace> w = workspaceRepository.findById(id);
+        if (w.isPresent()) {
+            Workspace ws = w.get();
+            return ws;
+        }
+
+        return null;
     }
 }

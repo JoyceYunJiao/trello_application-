@@ -1,13 +1,17 @@
-import { Card } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 function Workspace(props:any) {
+    if (!props.workspace) {
+        return (
+            <Alert>
+                <Alert.Heading>No workspace found</Alert.Heading>
+            </Alert>
+        );
+    }
+
     return (
-        <Card>
-            <Card.Body>
-                <h2>{props.workspace.title}</h2>
-                <p>{props.workspace.description}</p>
-            </Card.Body>
-        </Card>
+        <h1>{props.workspace.title}</h1>
     );
 }
+
 export default Workspace;

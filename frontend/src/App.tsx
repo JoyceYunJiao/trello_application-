@@ -7,7 +7,8 @@ import './App.css';
 import NewWorkspace from './pages/NewWorkspace';
 import Login from './pages/Login';
 import ForgotPassword from "./pages/forgotPassword"
-
+import ViewWorkspacePage from './pages/ViewWorkspacePage';
+import NewBoard from './pages/NewBoard';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Routes>
           {/* Show workspaces page */}
           <Route path="/workspaces" element={<Workspaces/>} />
+          {/* Show specific workspace page */}
+          <Route path="/workspaces/:id" element={<ViewWorkspacePage/>} />
+          {/* Show new board form for specific workspace page */}
+          <Route path="/workspaces/:id/createBoard" element={<NewBoard/>} />
           {/* Show new workspace page */}
           <Route path="/newWorkspace" element={<NewWorkspace/>} />
           {/* Show user login page */}

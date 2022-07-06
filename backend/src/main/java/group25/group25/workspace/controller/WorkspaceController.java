@@ -13,36 +13,29 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class WorkspaceController {
     @Autowired
     WorkspaceService workspaceService;
-    @Autowired
-    WorkspaceRepository workspaceRepository;
 
     @GetMapping(path = "/getAllWorkspaces", produces = "application/json")
-    @CrossOrigin(origins = "http://localhost:3000")
     public List<Workspace> getAllWorkspaces() {
         return workspaceService.findAll();
     }
 
+    @GetMapping(path = "/getWorkspace/{id}", produces = "application/json")
+    public Workspace getWorkspace(@PathVariable("id") int id) {
+        return workspaceService.findById(id);
+    }
+
     @GetMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
     public Set<User> getAssignedUsers(@RequestBody Workspace workspace) {
-        Optional<Workspace> w = workspaceRepository.findById(workspace.getId());
-        if (w.isPresent()) {
-            Workspace ws = w.get();
-            return ws.getAssignedUsers();
-        }
-
-        // Workspace not found, return null
-        System.out.println("Could not retrieve assigned users from workspace with id " + workspace.getId() + ", workspace not found");
-        return null;
+        return workspaceService.findById(workspace.getId()).getAssignedUsers();
     }
 
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public String addWorkspace(@RequestBody Workspace workspace) {
-        workspaceService.saveWorkspace(workspace);
-        return "Saved workspace data successfully with id " + workspace.getId();
+    public Workspace addWorkspace(@RequestBody Workspace workspace) {
+        return workspaceService.saveWorkspace(workspace);
     }
 
     @PutMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")

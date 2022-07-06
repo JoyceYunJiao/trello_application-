@@ -35,10 +35,4 @@ public class BoardServiceimpl implements BoardService {
         return boardRepository.getBoard(id);
     }
 
-    /*
-    @Override
-    public Integer deleteByTitle(String boardTitle) {
-        return null;
-    }
-     */
 }

@@ -17,7 +17,7 @@ function CreateBoardForm(props:any) {
         //read the values 
         //boardtitle, Description
         const boardName = boardNameRef.current.value;
-        const boardDesp = boardNameRef.current.value;
+        const boardDesp = boardDespRef.current.value;
 
         const board = {
             title: boardName,
@@ -31,7 +31,7 @@ function CreateBoardForm(props:any) {
 
     return (
         <section style={{ marginTop: '32px' }}>
-            <Typography variant='h2' component='h2'>Create New Board {id}</Typography>
+            <Typography variant='h2' component='h2'>Create New Board</Typography>
             <form onSubmit={createBoard}>
                 <TextField
                     id='boardName'

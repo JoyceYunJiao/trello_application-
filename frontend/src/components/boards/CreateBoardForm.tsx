@@ -1,14 +1,14 @@
 import { Button, TextField, Typography } from '@mui/material';
-import React from 'react';
-import Boards from '../pages/board';
+import React, { useRef } from 'react';
+import Boards from '../../pages/board';
 
-function CreateBoardForm(props) {
+function CreateBoardForm() {
     /* ToDo: Create board name variable using useRef */
-    const boardNameRef = useRef();
+    const boardNameRef:any = useRef();
     /* ToDo: Create board description variable using useRef */
-    const boardDespRef = useRef();
+    const boardDespRef:any = useRef();
 
-    function createBoard(e) {
+    function createBoard(e:any) {
         e.preventDefault();
         /* ToDo: Implement createBoard function */
         //read the values 

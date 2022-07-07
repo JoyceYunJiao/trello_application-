@@ -35,10 +35,12 @@ public class WorkspaceServiceImpl implements WorkspaceService {
         String email = json.get("userEmail");
         int workspaceId = Integer.parseInt(json.get("workspaceId"));
 
-        User user = userRepository.findByEmail(email).get(0);
-        if (user == null)
-            // This user does not exist
+        List<User> users = userRepository.findByEmail(email);
+        if (users.size() == 0)
+            // There are no users with this email
             return false;
+
+        User user = userRepository.findByEmail(email).get(0);
 
         UserAccessWorkspace access = new UserAccessWorkspace(user.getId(), workspaceId);
 

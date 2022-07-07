@@ -63,13 +63,14 @@ export default function ForgotPassword() {
                 //change password in database
                 fetch('http://localhost:8080/updateUserPasswordByEmail?email='+inputData.get("email")+'&newPassword='+inputData.get("password"), {
                     method: 'POST',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
+                    // headers: {
+                    // 'Content-Type': 'application/json'
+                    // },
                     // body: JSON.stringify({
-                    // emailId: inputData.get("email"),
-                    // password: inputData.get("password")
+                    // // emailId: inputData.get("email"),
+                    // // password: inputData.get("password")
                     // })
+
                 })
                 setSucceed(true);
                 // return response.json();

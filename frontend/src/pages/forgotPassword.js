@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
 
-
+// learned from https://github.com/mui/material-ui/tree/v5.8.3/docs/data/material/getting-started/templates/sign-up
 
 const theme = createTheme();
 
@@ -63,13 +63,6 @@ export default function ForgotPassword() {
                 //change password in database
                 fetch('http://localhost:8080/updateUserPasswordByEmail?email='+inputData.get("email")+'&newPassword='+inputData.get("password"), {
                     method: 'POST',
-                    // headers: {
-                    // 'Content-Type': 'application/json'
-                    // },
-                    // body: JSON.stringify({
-                    // // emailId: inputData.get("email"),
-                    // // password: inputData.get("password")
-                    // })
 
                 })
                 setSucceed(true);

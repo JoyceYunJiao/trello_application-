@@ -12,8 +12,11 @@ public class UserServices {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(String email, String password) {
+    public User login(String email, String password) {
 
-        return false;
+        if(userRepository.findUserByEmail(email).getPassword().equals(password)) return userRepository.findUserByEmail(email);
+
+        return null;
     }
+
 }

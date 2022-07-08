@@ -41,30 +41,10 @@ public class BoardServiceImplTest {
 
         Board savedBoard = boardServiceimpl.addBoard(board);
         assertNotNull(savedBoard);
-<<<<<<< HEAD
-        //
-=======
->>>>>>> main-dump
         assertEquals(savedBoard, board);
 
     }
 
-<<<<<<< HEAD
-
-    /*
-    @Test
-    public void deleteBoardTest(long id){
-        Board board = new Board();
-        boardServiceimpl.addBoard(board);
-        boardRepository.deleteById(id);
-
-        //Mockito.when(boardRepository.deleteByTitle("Test"));
-        long deleteByTitleCount = boardRepository.deleteByTitle("Test");
-        assertEquals("deleted title count is not matching", 1, deleteByTitleCount.intValue());
-    }
-    
-     */
-=======
     @Test
     public void deleteBoardTest(long id){
         Board board = new Board();
@@ -79,10 +59,6 @@ public class BoardServiceImplTest {
         assertEquals(deletedBoard, board);
 
     }
-    
-
->>>>>>> main-dump
-
 
 
     @Test

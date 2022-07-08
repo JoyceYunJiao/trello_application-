@@ -4,11 +4,8 @@ import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
 import group25.group25.usermanagement.serviceImplementation.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
-=======
 import org.springframework.web.bind.annotation.PostMapping;
->>>>>>> login
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

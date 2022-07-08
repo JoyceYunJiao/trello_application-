@@ -42,5 +42,5 @@ public class UserController {
     public Set<Workspace> getWorkspaces(@PathVariable("id") int id) {
         return userservices.getWorkspaces(id);
     }
-}
 
+}

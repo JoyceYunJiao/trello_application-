@@ -41,11 +41,15 @@ public class BoardServiceImplTest {
 
         Board savedBoard = boardServiceimpl.addBoard(board);
         assertNotNull(savedBoard);
+<<<<<<< HEAD
         //
+=======
+>>>>>>> main-dump
         assertEquals(savedBoard, board);
 
     }
 
+<<<<<<< HEAD
 
     /*
     @Test
@@ -60,6 +64,24 @@ public class BoardServiceImplTest {
     }
     
      */
+=======
+    @Test
+    public void deleteBoardTest(long id){
+        Board board = new Board();
+        //Long boardId, String dateCreated, String description, String boardTitle
+        board.setId(10L);
+        board.setDescription("testing");
+        board.setDateCreated("July 2022");
+        board.setTitle("Test");
+        Mockito.when(boardRepository.deleteBoard(id)).thenReturn(board);
+        Board deletedBoard = boardServiceimpl.addBoard(board);
+        assertNotNull(deletedBoard);
+        assertEquals(deletedBoard, board);
+
+    }
+    
+
+>>>>>>> main-dump
 
 
 

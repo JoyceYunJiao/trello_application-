@@ -1,7 +1,10 @@
 package group25.group25;
 
+<<<<<<< HEAD
 import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
+=======
+>>>>>>> main-dump
 import group25.group25.workspace.model.UserAccessWorkspace;
 import group25.group25.workspace.model.Workspace;
 import group25.group25.workspace.repository.UserAccessWorkspaceRepository;
@@ -13,7 +16,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+<<<<<<< HEAD
 import java.util.*;
+=======
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+>>>>>>> main-dump
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -25,8 +34,11 @@ public class WorkspaceServiceTest {
     WorkspaceRepository workspaceRepository;
     @Mock
     UserAccessWorkspaceRepository accessRepository;
+<<<<<<< HEAD
     @Mock
     UserRepository userRepository;
+=======
+>>>>>>> main-dump
     @InjectMocks
     WorkspaceServiceImpl workspaceService;
 
@@ -57,6 +69,7 @@ public class WorkspaceServiceTest {
         when(accessRepository.existsByUserIdAndWorkspaceId(anyInt(), anyInt())).thenReturn(0); // Empty repository
         when(accessRepository.existsByUserIdAndWorkspaceId(0, 0)).thenReturn(1); // 0,0 exists
 
+<<<<<<< HEAD
         User user1 = new User();
         User user2 = new User();
         user1.setId(0);
@@ -79,6 +92,10 @@ public class WorkspaceServiceTest {
 
         Assertions.assertTrue(workspaceService.assignWorkspaceUser(validJson));
         Assertions.assertFalse(workspaceService.assignWorkspaceUser(invalidJson));
+=======
+        Assertions.assertTrue(workspaceService.assignWorkspaceUser(new UserAccessWorkspace(0, 1)));
+        Assertions.assertFalse(workspaceService.assignWorkspaceUser(new UserAccessWorkspace(0, 0)));
+>>>>>>> main-dump
     }
 
     @Test

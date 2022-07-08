@@ -2,7 +2,6 @@ package group25.group25.workspace.serviceImplementation;
 
 import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
-import group25.group25.usermanagement.serviceImplementation.UserServices;
 import group25.group25.workspace.model.UserAccessWorkspace;
 import group25.group25.workspace.model.Workspace;
 import group25.group25.workspace.repository.UserAccessWorkspaceRepository;
@@ -24,7 +23,6 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Override
     public Workspace saveWorkspace(Workspace workspace) {
         return workspaceRepository.save(workspace);

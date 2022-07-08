@@ -1,6 +1,6 @@
 package group25.group25.passwordForgot.repository;
 
-import group25.group25.passwordForgot.model.Users;
+import group25.group25.passwordForgot.model.users;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,10 +12,10 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface CustomerRepository extends CrudRepository<Users, Integer> {
+public interface CustomerRepository extends CrudRepository<users, Integer> {
 
-    @Query("SELECT u FROM Users u WHERE u.email= :mail")
-    public Users findByEmail(@Param("mail") String email);
+    @Query("SELECT u FROM users u WHERE u.email= :mail")
+    public users findByEmail(@Param("mail") String email);
 
 
     @Modifying

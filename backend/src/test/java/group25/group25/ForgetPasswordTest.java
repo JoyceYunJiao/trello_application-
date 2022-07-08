@@ -2,7 +2,7 @@ package group25.group25;
 
 import group25.group25.passwordForgot.controller.passwordController;
 
-import group25.group25.passwordForgot.model.Users;
+import group25.group25.passwordForgot.model.users;
 import group25.group25.passwordForgot.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ public class ForgetPasswordTest {
     @Test
     void testShowUserByPassword(){
         String mail = "testPassword@test.com";
-        Users tempUser = new Users("testPassword@test.com","testFname","testLname","testPassword","testUsername");
+        users tempUser = new users("testPassword@test.com","testFname","testLname","testPassword","testUsername");
         when(controller.showUserByPassword(mail)).thenReturn(tempUser);
         assertEquals(tempUser, controller.showUserByPassword(mail),"wrong testShowUserByPassword");
     }

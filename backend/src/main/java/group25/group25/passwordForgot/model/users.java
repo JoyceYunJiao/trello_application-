@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -36,7 +36,7 @@ public class Users {
     @Column(name = "security_answer")
     private String securityAnswer;
 
-    public Users(String email, String firstName, String lastName, String password, String username) {
+    public users(String email, String firstName, String lastName, String password, String username) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,7 +44,7 @@ public class Users {
         this.username = username;
     }
 
-    public Users() {
+    public users() {
 
     }
 

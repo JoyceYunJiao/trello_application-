@@ -1,6 +1,6 @@
 package group25.group25.passwordForgot.controller;
 
-import group25.group25.passwordForgot.model.Users;
+import group25.group25.passwordForgot.model.users;
 
 import group25.group25.passwordForgot.repository.CustomerRepository;
 
@@ -17,7 +17,7 @@ public class passwordController {
 
     //input the mail and show user information |||||need rename later||||||
     @GetMapping(path = "/showUserByPassword/{mail}")
-    public Users showUserByPassword(@PathVariable String mail){
+    public users showUserByPassword(@PathVariable String mail){
         return customerRepository.findByEmail(mail);
     }
 

@@ -3,10 +3,12 @@ package group25.group25.usermanagement.controller;
 import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
 import group25.group25.usermanagement.serviceImplementation.UserServices;
+import group25.group25.workspace.model.Workspace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -34,8 +36,11 @@ public class UserController {
     @PostMapping(value = "login", consumes = "application/json", produces = "application/json")
         public User login(@RequestBody User user){
         return  userservices.login(user.getEmail(), user.getPassword());
-
     }
 
+    @GetMapping(value = "getWorkspaces/{id}", produces = "application/json")
+    public Set<Workspace> getWorkspaces(@PathVariable("id") int id) {
+        return userservices.getWorkspaces(id);
+    }
 }
 

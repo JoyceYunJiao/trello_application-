@@ -6,9 +6,18 @@ function Navigation() {
 
   if (localStorage.getItem("user")) {
     userNavSection = (
-    <Nav.Link as={Link} to={"/logout"}>
-        Logout
-    </Nav.Link>
+    <>
+      <Nav.Link as={Link} to={"/workspaces"}>
+          Workspaces
+      </Nav.Link>
+
+      <Nav.Link as={Link} to={"/newWorkspace"}>
+          New Workspace
+      </Nav.Link>
+      <Nav.Link as={Link} to={"/logout"}>
+          Logout
+      </Nav.Link>
+    </>
     );
   } else {
     userNavSection = (
@@ -30,13 +39,6 @@ function Navigation() {
         <Navbar.Brand as={Link} to="/">Trello Clone</Navbar.Brand>
 
         <Nav className='me-auto'>
-            <Nav.Link as={Link} to={"/workspaces"}>
-                Workspaces
-            </Nav.Link>
-
-            <Nav.Link as={Link} to={"/newWorkspace"}>
-                New Workspace
-            </Nav.Link>
 
             {userNavSection}
 

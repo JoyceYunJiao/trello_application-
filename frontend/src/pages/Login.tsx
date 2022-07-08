@@ -15,7 +15,7 @@ function Login() {
 
                 const u = response.data;
 
-                if (u === null) {
+                if (u === null || u === undefined || u === "") {
                     alert("Invalid email or password");
                     return;
                 }

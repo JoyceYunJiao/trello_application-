@@ -14,7 +14,6 @@ public class passwordController {
     @Autowired
     private CustomerRepository customerRepository;
 
-
     //input the mail and show user information |||||need rename later||||||
     @GetMapping(path = "/showUserByPassword/{mail}")
     public users showUserByPassword(@PathVariable String mail){

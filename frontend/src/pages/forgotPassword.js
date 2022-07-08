@@ -23,6 +23,8 @@ export default function ForgotPassword() {
 
   const [succeed, setSucceed] = useState(false);
   var temp1 = false;
+  const [firstTime, setFirstTime] = useState(false);
+
   const [mailStatus, setMailStatus] = useState(false);
   const [secAnsStatus, setSecAnsStatus] = useState(false);
 
@@ -36,11 +38,11 @@ export default function ForgotPassword() {
 
     fetch('http://localhost:8080/showUserByPassword/'+inputData.get("email"))
     .then(response => {
+      setFirstTime(true);
         return response.json()
     })
     .then(data => {
         //this email address is correct
-        console.log("position1");
         console.log(data);
         console.log(inputData.get("email")+"  "+ inputData.get("password"));
 
@@ -57,12 +59,9 @@ export default function ForgotPassword() {
             console.log("temp1 is : "+temp1);
             setSecAnsStatus(temp1);
 
-
-            console.log("//////");
             //when input the correct email address and the sectury answer is yes
             if(temp1){
                 console.log("position3");
-                // console.log(inputData.get("password")+"   "+ inputData.get("email"));
 
                 //change password in database
                 fetch('http://localhost:8080/updateUserPasswordByEmail?email='+inputData.get("email")+'&newPassword='+inputData.get("password"), {
@@ -173,10 +172,16 @@ export default function ForgotPassword() {
               </Grid>
             </Grid>
             <Grid container justifyContent="flex-end">
+              {firstTime?
                 <p>{mailStatus? "correct mail address": "wrong mail address"}</p>
+                :""
+              }
             </Grid>
             <Grid container justifyContent="flex-end">
+            {firstTime?
               <p>{secAnsStatus? "correct security answer": "wrong security answer"}</p>
+              :""
+            }
             </Grid>
           </Box>
         </Box>

@@ -2,6 +2,28 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 function Navigation() {
+  let userNavSection;
+
+  if (localStorage.getItem("user")) {
+    userNavSection = (
+    <Nav.Link as={Link} to={"/logout"}>
+        Logout
+    </Nav.Link>
+    );
+  } else {
+    userNavSection = (
+    <>
+      <Nav.Link as={Link} to={"/login"}>
+          Login
+      </Nav.Link>
+      
+      <Nav.Link as={Link} to={"/forgotPassword"}>
+        ForgotPassword
+      </Nav.Link>
+    </>
+    );
+  }
+
   return (
     <Navbar bg="primary" variant='dark'>
       <Container>
@@ -16,13 +38,8 @@ function Navigation() {
                 New Workspace
             </Nav.Link>
 
-            <Nav.Link as={Link} to={"/login"}>
-                Login
-            </Nav.Link>
+            {userNavSection}
 
-            <Nav.Link as={Link} to={"/forgotPassword"}>
-                ForgotPassword
-            </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

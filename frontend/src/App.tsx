@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import ForgotPassword from "./pages/forgotPassword"
 import ViewWorkspacePage from './pages/ViewWorkspacePage';
 import NewBoard from './pages/NewBoard';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/newWorkspace" element={<NewWorkspace/>} />
           {/* Show user login page */}
           <Route path="/login" element={<Login/>} />
+          <Route path="/logout" element={<Logout/>} />
           <Route path="/forgotPassword" element={<ForgotPassword/>} />
 
 

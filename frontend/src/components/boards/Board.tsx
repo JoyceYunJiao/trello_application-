@@ -16,7 +16,7 @@ function Board(props:any) {
                     View All Tasks
                 </Button>
 
-                <Button>
+                <Button onClick={() => {deleteBoardHandler(props.board)}}>
                     delete
                 </Button>
                 
@@ -25,10 +25,11 @@ function Board(props:any) {
     );
 
     function deleteBoardHandler(board: any){
+        console.log(board);
         //implement the delete board function 
         //unsure if the URL is the right one 
-        axios.delete('http://localhost:9001/deleteBoard', board)
-        .then(() => { window.location.reload() })
+        axios.delete('http://localhost:8080/deleteBoard', board)
+        // .then(() => { window.location.reload() })
     };
 
 }

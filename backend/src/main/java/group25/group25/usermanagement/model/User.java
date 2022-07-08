@@ -32,12 +32,16 @@ public class User {
     @Column(name = "user_username")
     private String username;
 
-    public User(String email, String firstName, String lastName, String password, String username) {
+    @Column(name = "security_answer")
+    private String answer;
+
+    public User(String email, String firstName, String lastName, String password, String username, String answer) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.username = username;
+        this.answer = answer;
     }
 
     public User() {
@@ -90,6 +94,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public Set<Workspace> getWorkspaces() {

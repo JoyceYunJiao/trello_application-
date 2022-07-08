@@ -20,7 +20,7 @@ public class loginTest {
     @Test
     void validLogin(){
 
-        User user = new User("test@email.com", "Tom", "Scott", "rrr", "doweevenneedthisfield");
+        User user = new User("test@email.com", "Tom", "Scott", "rrr", "doweevenneedthisfield","cat");
 
 
         Assertions.assertTrue(UserServices.login("test@email.com","rrr").getEmail().equals(user.getEmail()));

@@ -10,6 +10,7 @@ import ForgotPassword from "./pages/forgotPassword"
 import ViewWorkspacePage from './pages/ViewWorkspacePage';
 import NewBoard from './pages/NewBoard';
 import Logout from './pages/Logout';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/logout" element={<Logout/>} />
           <Route path="/forgotPassword" element={<ForgotPassword/>} />
+          <Route path='/register' element={<Register/>} />
 
 
         </Routes>

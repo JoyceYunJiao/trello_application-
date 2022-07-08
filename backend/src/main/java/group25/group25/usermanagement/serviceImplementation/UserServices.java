@@ -21,6 +21,11 @@ public class UserServices {
         return null;
     }
 
+    public User register(User userModel) {
+
+        return userRepository.save(userModel);
+    }
+
     public Set<Workspace> getWorkspaces(int id) {
         return userRepository.getWorkspaces(id);
     }

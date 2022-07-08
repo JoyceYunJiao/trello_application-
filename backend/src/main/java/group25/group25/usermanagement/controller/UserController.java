@@ -11,12 +11,16 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
     UserServices userservices;
+
+    @Autowired
+    UserServices userServices;
 
     @RequestMapping(value = "getusers", method = RequestMethod.GET)
     public List<User> getAllUsers() {
@@ -41,6 +45,11 @@ public class UserController {
     @GetMapping(value = "getWorkspaces/{id}", produces = "application/json")
     public Set<Workspace> getWorkspaces(@PathVariable("id") int id) {
         return userservices.getWorkspaces(id);
+    }
+
+    @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
+    public User registerAccount(@RequestBody User userModel){
+        return userServices.register(userModel);
     }
 }
 

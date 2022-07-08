@@ -29,6 +29,10 @@ function Navigation() {
       <Nav.Link as={Link} to={"/forgotPassword"}>
         ForgotPassword
       </Nav.Link>
+
+      <Nav.Link as={Link} to={"/Register"}>
+        Register
+      </Nav.Link>
     </>
     );
   }

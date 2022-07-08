@@ -1,7 +1,6 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import Boards from '../../pages/board';
 
 function CreateBoardForm(props:any) {
     const {id} = useParams();

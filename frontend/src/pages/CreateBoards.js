@@ -1,7 +1,5 @@
-import React from 'react';
-//
 import { boardHistory } from "react-router-dom"
-import CreateBoardForm from '../components/CreateBoardForm';
+import CreateBoardForm from '../components/boards/CreateBoardForm';
 
 function CreateBoard() {
 

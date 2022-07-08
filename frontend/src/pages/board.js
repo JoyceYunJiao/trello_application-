@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ViewBoards from '../components/ViewBoards';
+import ViewBoards from '../components/boards/ViewBoards';
 import boards from '../dummy/dummyBoards';
 import classes from './board.module.css';
 

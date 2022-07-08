@@ -1,5 +1,7 @@
 package group25.group25;
 
+import group25.group25.usermanagement.model.User;
+import group25.group25.usermanagement.repository.UserRepository;
 import group25.group25.workspace.model.UserAccessWorkspace;
 import group25.group25.workspace.model.Workspace;
 import group25.group25.workspace.repository.UserAccessWorkspaceRepository;
@@ -11,9 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -25,6 +25,8 @@ public class WorkspaceServiceTest {
     WorkspaceRepository workspaceRepository;
     @Mock
     UserAccessWorkspaceRepository accessRepository;
+    @Mock
+    UserRepository userRepository;
     @InjectMocks
     WorkspaceServiceImpl workspaceService;
 
@@ -55,8 +57,28 @@ public class WorkspaceServiceTest {
         when(accessRepository.existsByUserIdAndWorkspaceId(anyInt(), anyInt())).thenReturn(0); // Empty repository
         when(accessRepository.existsByUserIdAndWorkspaceId(0, 0)).thenReturn(1); // 0,0 exists
 
-        Assertions.assertTrue(workspaceService.assignWorkspaceUser(new UserAccessWorkspace(0, 1)));
-        Assertions.assertFalse(workspaceService.assignWorkspaceUser(new UserAccessWorkspace(0, 0)));
+        User user1 = new User();
+        User user2 = new User();
+        user1.setId(0);
+        user2.setId(1);
+        List<User> users1 = new ArrayList<>();
+        List<User> users2 = new ArrayList<>();
+        users1.add(user1);
+        users2.add(user2);
+
+        when(userRepository.findByEmail("test@gmail.com")).thenReturn(users1);
+        when(userRepository.findByEmail("admin@email.com")).thenReturn(users2);
+
+        Map<String, String> invalidJson = new HashMap<>();
+        invalidJson.put("userEmail", "test@gmail.com");
+        invalidJson.put("workspaceId", "0");
+
+        Map<String, String> validJson = new HashMap<>();
+        validJson.put("userEmail", "admin@email.com");
+        validJson.put("workspaceId", "0");
+
+        Assertions.assertTrue(workspaceService.assignWorkspaceUser(validJson));
+        Assertions.assertFalse(workspaceService.assignWorkspaceUser(invalidJson));
     }
 
     @Test

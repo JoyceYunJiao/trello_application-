@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,9 +29,9 @@ public class WorkspaceController {
         return workspaceService.findById(id);
     }
 
-    @GetMapping(path = "/getAssignedUsers", consumes = "application/json", produces = "application/json")
-    public Set<User> getAssignedUsers(@RequestBody Workspace workspace) {
-        return workspaceService.findById(workspace.getId()).getAssignedUsers();
+    @GetMapping(path = "/getAssignedUsers/{id}", produces = "application/json")
+    public Set<User> getAssignedUsers(@PathVariable("id") int id) {
+        return workspaceService.findById(id).getAssignedUsers();
     }
 
     @PostMapping(path = "/addWorkspace", consumes = "application/json", produces = "application/json")
@@ -39,21 +40,15 @@ public class WorkspaceController {
     }
 
     @PutMapping(path = "/assignWorkspaceUser", consumes = "application/json", produces = "application/json")
-    public String assignWorkspaceUser(@RequestBody UserAccessWorkspace access) {
-        if (workspaceService.assignWorkspaceUser(access)) {
+    public String assignWorkspaceUser(@RequestBody Map<String, String> json) {
+
+        if (workspaceService.assignWorkspaceUser(json)) {
             // User/workspace pair was added to database
-            return "Successfully assigned user with id "
-                    + access.getUserId()
-                    + " to workspace with id "
-                    + access.getWorkspaceId();
+            return "Successfully assigned user";
         }
         else {
             // User/workspace pair already exists
-            return "Could not assigned user with id "
-                    + access.getUserId()
-                    + " to workspace with id "
-                    + access.getWorkspaceId()
-                    + "; pair already exists";
+            return "Could not assign";
         }
     }
 }

@@ -23,6 +23,10 @@ export default function ForgotPassword() {
 
   const [succeed, setSucceed] = useState(false);
   var temp1 = false;
+  const [mailStatus, setMailStatus] = useState(false);
+  const [secAnsStatus, setSecAnsStatus] = useState(false);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,13 +49,13 @@ export default function ForgotPassword() {
 
 
         if(data != null) {
-
+          setMailStatus(true);
             console.log(data.securityAnswer);
             console.log(inputData.get("SecurityAnswer"));
-            console.log("position2");
 
             temp1 = data.securityAnswer==inputData.get("SecurityAnswer")
             console.log("temp1 is : "+temp1);
+            setSecAnsStatus(temp1);
 
 
             console.log("//////");
@@ -76,11 +80,16 @@ export default function ForgotPassword() {
                 }
             }
         }
+        console.log("mailStatus: "+mailStatus);
+
 
     })
 
     .catch(error => {
         console.log('Wrong mail address: ');
+        setMailStatus(false);
+        console.log("mailStatus error: "+mailStatus);
+
         console.log({
             emailId: inputData.get("email"),
         });
@@ -160,12 +169,17 @@ export default function ForgotPassword() {
               <Grid item>
                 <Link href="/Login" variant="body2">
                   Rember your password again? This way sir→
-                </Link>
+                </Link>                
               </Grid>
+            </Grid>
+            <Grid container justifyContent="flex-end">
+                <p>{mailStatus? "correct mail address": "wrong mail address"}</p>
+            </Grid>
+            <Grid container justifyContent="flex-end">
+              <p>{secAnsStatus? "correct security answer": "wrong security answer"}</p>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );

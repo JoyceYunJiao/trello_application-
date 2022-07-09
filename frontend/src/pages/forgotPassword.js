@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect } from 'react-router-dom';
 
-
+// learned from https://github.com/mui/material-ui/tree/v5.8.3/docs/data/material/getting-started/templates/sign-up
 
 const theme = createTheme();
 
@@ -23,6 +23,12 @@ export default function ForgotPassword() {
 
   const [succeed, setSucceed] = useState(false);
   var temp1 = false;
+  const [firstTime, setFirstTime] = useState(false);
+
+  const [mailStatus, setMailStatus] = useState(false);
+  const [secAnsStatus, setSecAnsStatus] = useState(false);
+
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,11 +38,11 @@ export default function ForgotPassword() {
 
     fetch('http://localhost:8080/showUserByPassword/'+inputData.get("email"))
     .then(response => {
+      setFirstTime(true);
         return response.json()
     })
     .then(data => {
         //this email address is correct
-        console.log("position1");
         console.log(data);
         console.log(inputData.get("email")+"  "+ inputData.get("password"));
 
@@ -45,31 +51,21 @@ export default function ForgotPassword() {
 
 
         if(data != null) {
-
+          setMailStatus(true);
             console.log(data.securityAnswer);
             console.log(inputData.get("SecurityAnswer"));
-            console.log("position2");
 
             temp1 = data.securityAnswer==inputData.get("SecurityAnswer")
             console.log("temp1 is : "+temp1);
+            setSecAnsStatus(temp1);
 
-
-            console.log("//////");
             //when input the correct email address and the sectury answer is yes
             if(temp1){
                 console.log("position3");
-                // console.log(inputData.get("password")+"   "+ inputData.get("email"));
 
                 //change password in database
                 fetch('http://localhost:8080/updateUserPasswordByEmail?email='+inputData.get("email")+'&newPassword='+inputData.get("password"), {
                     method: 'POST',
-                    // headers: {
-                    // 'Content-Type': 'application/json'
-                    // },
-                    // body: JSON.stringify({
-                    // // emailId: inputData.get("email"),
-                    // // password: inputData.get("password")
-                    // })
 
                 })
                 setSucceed(true);
@@ -83,11 +79,16 @@ export default function ForgotPassword() {
                 }
             }
         }
+        console.log("mailStatus: "+mailStatus);
+
 
     })
 
     .catch(error => {
         console.log('Wrong mail address: ');
+        setMailStatus(false);
+        console.log("mailStatus error: "+mailStatus);
+
         console.log({
             emailId: inputData.get("email"),
         });
@@ -167,12 +168,23 @@ export default function ForgotPassword() {
               <Grid item>
                 <Link href="/Login" variant="body2">
                   Rember your password again? This way sir→
-                </Link>
+                </Link>                
               </Grid>
+            </Grid>
+            <Grid container justifyContent="flex-end">
+              {firstTime?
+                <p>{mailStatus? "correct mail address": "wrong mail address"}</p>
+                :""
+              }
+            </Grid>
+            <Grid container justifyContent="flex-end">
+            {firstTime?
+              <p>{secAnsStatus? "correct security answer": "wrong security answer"}</p>
+              :""
+            }
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );

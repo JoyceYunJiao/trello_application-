@@ -19,7 +19,7 @@ public class BoardController {
         return boardService.addBoard(board);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/deleteBoard", consumes = "application/json", produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, path = "/deleteBoard", consumes = "application/json", produces = "application/json")
     public String deleteBoard(@RequestBody Board board){
         boardService.deleteBoard(board);
         return "board deleted successfully";

@@ -2,12 +2,16 @@ package group25.group25;
 
 import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
-import group25.group25.usermanagement.serviceImplementation.UserServices;
+import group25.group25.usermanagement.serviceImplementation.UserServiceImpl;
+import group25.group25.workspace.model.Workspace;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -18,7 +22,7 @@ public class UserServicesTests {
   UserRepository userRepository;
 
   @InjectMocks
-  UserServices userService;
+  UserServiceImpl userService;
 
   @Test
   void testSaveUser() {
@@ -31,5 +35,13 @@ public class UserServicesTests {
   }
 
 
+  @Test
+  void testGetWorkspaces() {
+    when(userRepository.getWorkspaces(any(Integer.class))).thenReturn(new HashSet<>());
 
+    User user = new User();
+    Set<Workspace> workspaces = userService.getWorkspaces(user.getId());
+
+    Assertions.assertNotNull(workspaces);
+  }
 }

@@ -8,6 +8,7 @@ class Group25ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// Left in from default spring boot project
 	}
 
 }

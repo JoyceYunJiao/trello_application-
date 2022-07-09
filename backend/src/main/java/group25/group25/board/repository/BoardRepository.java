@@ -11,5 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query("SELECT a FROM Board a where a.id = ?1")
     public Board getBoard(long id);
+
+    @Query("DELETE FROM Board a where a.id = ?1")
+    public Board deleteBoard(long id);
 }
 

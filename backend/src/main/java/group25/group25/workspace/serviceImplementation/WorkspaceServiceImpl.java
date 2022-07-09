@@ -23,7 +23,6 @@ public class WorkspaceServiceImpl implements WorkspaceService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Override
     public Workspace saveWorkspace(Workspace workspace) {
         return workspaceRepository.save(workspace);

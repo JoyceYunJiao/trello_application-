@@ -13,7 +13,7 @@ public interface BoardService {
 
     public List<Board> findAll();
 
-    public void deleteBoard(Board board);
+    public Board deleteBoard(Board board);
 
     public Board addBoard(Board board);
 

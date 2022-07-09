@@ -26,8 +26,9 @@ public class BoardServiceimpl implements BoardService {
     }
 
     @Override
-    public void deleteBoard(Board board) {
+    public Board deleteBoard(Board board){
         boardRepository.delete(board);
+        return board;
     }
 
     @Override

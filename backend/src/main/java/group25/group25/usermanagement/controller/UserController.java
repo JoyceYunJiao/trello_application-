@@ -47,5 +47,5 @@ public class UserController {
     public User registerAccount(@RequestBody User userModel){
         return userService.register(userModel);
     }
-}
 
+}

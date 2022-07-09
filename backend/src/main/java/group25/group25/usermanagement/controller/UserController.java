@@ -3,7 +3,6 @@ package group25.group25.usermanagement.controller;
 import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
 import group25.group25.usermanagement.service.UserService;
-import group25.group25.usermanagement.serviceImplementation.UserServiceImpl;
 import group25.group25.workspace.model.Workspace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +17,6 @@ public class UserController {
     UserRepository userRepository;
     @Autowired
     UserService userService;
-
-    @Autowired
-    UserServiceImpl userServices;
 
     @RequestMapping(value = "getusers", method = RequestMethod.GET)
     public List<User> getAllUsers() {
@@ -49,7 +45,7 @@ public class UserController {
 
     @PostMapping(path = "/saveUser", consumes = "application/json", produces = "application/json")
     public User registerAccount(@RequestBody User userModel){
-        return userServices.register(userModel);
+        return userService.register(userModel);
     }
 }
 

@@ -23,6 +23,7 @@ function Login() {
                 // Valid user, save user in local storage and redirect to workspaces
                 localStorage.setItem("user", JSON.stringify(u));
                 navigate("/workspaces");
+                window.location.reload();
             }
 
         });

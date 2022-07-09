@@ -7,6 +7,7 @@ function LoginForm(props:any) {
     const passwordRef:any = useRef();
 
     function submitLoginForm(event:any){
+        const form = event.currentTarget;
 
         event.preventDefault();
         const email = emailRef.current.value;
@@ -26,7 +27,8 @@ function LoginForm(props:any) {
 
             <Form.Group controlId="formPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter password" ref={passwordRef}/>
+                {/* Regex found: https://stackoverflow.com/a/1559788 */}
+                <Form.Control type="password" placeholder="Enter password" ref={passwordRef} />
             </Form.Group>
 
             <Button variant="primary" type="submit" onClick={submitLoginForm}>

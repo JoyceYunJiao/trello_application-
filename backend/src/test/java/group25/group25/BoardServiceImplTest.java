@@ -23,11 +23,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class BoardServiceImplTest {
     @Mock
-    @Autowired
     private BoardRepository boardRepository;
 
     @InjectMocks
-    private BoardService boardServiceimpl = new BoardServiceimpl();
+    private BoardServiceimpl boardServiceimpl = new BoardServiceimpl();
 
     @Test
     public void addBoardTest(){
@@ -46,17 +45,17 @@ public class BoardServiceImplTest {
     }
 
     @Test
-    public void deleteBoardTest(long id){
+    public void deleteBoardTest(){
         Board board = new Board();
         //Long boardId, String dateCreated, String description, String boardTitle
         board.setId(10L);
         board.setDescription("testing");
         board.setDateCreated("July 2022");
         board.setTitle("Test");
-        Mockito.when(boardRepository.deleteBoard(id)).thenReturn(board);
-        Board deletedBoard = boardServiceimpl.addBoard(board);
+
+        boardServiceimpl.addBoard(board);
+        Board deletedBoard = boardServiceimpl.deleteBoard(board);
         assertNotNull(deletedBoard);
-        assertEquals(deletedBoard, board);
 
     }
 

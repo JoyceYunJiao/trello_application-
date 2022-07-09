@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     @Autowired
@@ -47,7 +46,7 @@ public class UserController {
         return userservices.getWorkspaces(id);
     }
 
-    @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/saveUser", consumes = "application/json", produces = "application/json")
     public User registerAccount(@RequestBody User userModel){
         return userServices.register(userModel);
     }

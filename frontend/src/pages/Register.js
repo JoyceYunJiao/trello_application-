@@ -7,7 +7,7 @@ function RegisterPage(){
     const navigate = useNavigate();
     
     function RegisterUserHandler(user){
-        fetch("http://localhost:8080/user/save",{
+        fetch("http://localhost:8080/saveUser",{
             method : "POST",
             body: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'}

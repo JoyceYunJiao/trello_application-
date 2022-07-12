@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ViewBoards from '../components/boards/ViewBoards';
-import boards from '../dummy/dummyBoards';
-import classes from './board.module.css';
 
 function Boards() {
     /* ToDo: Create state using useState hook for boards data */

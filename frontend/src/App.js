@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 import Workspaces from './pages/Workspaces';
 import Navigation from './components/Navigation';
@@ -14,7 +12,7 @@ import Register from './pages/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id='app'>
     <Router>
         <Navigation />
         

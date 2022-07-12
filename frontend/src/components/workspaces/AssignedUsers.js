@@ -9,8 +9,6 @@ function AssignedUsers() {
 
     const [users, setUsers] = useState([]);
 
-    const navigate = useNavigate();
-
     function getAssignedUsers() {
         axios.get("http://localhost:8080/getAssignedUsers/" + id)
             .then((response) => {

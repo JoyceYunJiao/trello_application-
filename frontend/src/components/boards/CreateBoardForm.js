@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from '@mui/material';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 function CreateBoardForm(props) {

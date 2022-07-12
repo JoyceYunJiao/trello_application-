@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import axios from 'axios';
 
 function Board(props) {

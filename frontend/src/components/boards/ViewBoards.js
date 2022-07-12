@@ -1,5 +1,4 @@
-import React from 'react';
-import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import { Grid, Typography, } from '@mui/material';
 import Board from './Board';
 
 function ViewBoards(props) {

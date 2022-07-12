@@ -2,7 +2,6 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import CreateBoardForm from "../components/boards/CreateBoardForm";
-import NewBoardForm from "../components/boards/NewBoardForm";
 
 function NewBoard() {
     // Workspace id from url

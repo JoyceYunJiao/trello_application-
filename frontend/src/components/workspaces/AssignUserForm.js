@@ -2,11 +2,11 @@ import { createRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-function AssignUserForm(props:any) {
+function AssignUserForm(props) {
     const {id} = useParams();
-    const email:any = createRef();
+    const email = createRef();
 
-    const assignUser = (e:any) => {
+    const assignUser = (e) => {
         e.preventDefault();
 
         const userEmail = email.current.value;

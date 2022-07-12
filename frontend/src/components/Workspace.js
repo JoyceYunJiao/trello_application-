@@ -3,7 +3,7 @@ import Board from "./boards/Board";
 import ViewBoards from "./boards/ViewBoards";
 import AssignedUsers from "./workspaces/AssignedUsers";
 
-function Workspace(props:any) {
+function Workspace(props) {
     return (
         <Container>
                 <h2>{props.workspace.title}</h2>

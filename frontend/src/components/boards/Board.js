@@ -1,7 +1,7 @@
 import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
 import axios from 'axios';
 
-function Board(props:any) {
+function Board(props) {
     return (
         
         <Card elevation={6}>
@@ -24,7 +24,7 @@ function Board(props:any) {
         </Card>
     );
 
-    function deleteBoardHandler(board: any){
+    function deleteBoardHandler(board){
         console.log(board);
         //implement the delete board function 
         //unsure if the URL is the right one 

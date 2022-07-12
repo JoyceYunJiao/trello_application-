@@ -4,9 +4,9 @@ import { Button, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Workspace from "../components/Workspace";
 
-function ViewWorkspacePage(props:any) {
+function ViewWorkspacePage(props) {
     const {id} = useParams();
-    const [workspaceData, setWorkspaceData] = useState<any | any>([]);
+    const [workspaceData, setWorkspaceData] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
     function getWorkspace() {

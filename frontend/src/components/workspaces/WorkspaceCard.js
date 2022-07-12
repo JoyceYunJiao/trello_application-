@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 
-function WorkspaceCard(props:any) {
+function WorkspaceCard(props) {
     return (
         <Card>
             <a href={"/workspaces/" + props.workspace.id}>

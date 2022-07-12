@@ -1,11 +1,11 @@
 import { Container } from "react-bootstrap";
 import WorkspaceCard from "./WorkspaceCard";
 
-function ViewWorkspaces(props:any) {
+function ViewWorkspaces(props) {
     return (
         <Container>
             {
-                props.workspaces.map((workspace:any) => {
+                props.workspaces.map((workspace) => {
                     return (
                         <WorkspaceCard workspace={workspace} key={workspace.id}/>
                     );

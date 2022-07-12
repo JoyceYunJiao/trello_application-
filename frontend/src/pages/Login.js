@@ -7,9 +7,9 @@ function Login() {
 
     const navigate = useNavigate();
 
-    function loginUserHandler(user:any) {
+    function loginUserHandler(user) {
         axios.post("http://localhost:8080/login", user)
-        .then((response:any) => {
+        .then((response) => {
             if (response.status === 200) {
                 console.log(response);
 

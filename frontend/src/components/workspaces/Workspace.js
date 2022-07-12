@@ -1,6 +1,6 @@
 import { Alert } from "react-bootstrap";
 
-function Workspace(props:any) {
+function Workspace(props) {
     if (!props.workspace) {
         return (
             <Alert>

@@ -19,7 +19,7 @@ import { Redirect } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function ForgotPassword() {
+function ForgotPassword() {
 
   const [succeed, setSucceed] = useState(false);
   var temp1 = false;
@@ -189,3 +189,5 @@ export default function ForgotPassword() {
     </ThemeProvider>
   );
 }
+
+export default ForgotPassword;

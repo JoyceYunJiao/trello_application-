@@ -6,7 +6,7 @@ import Navigation from './components/Navigation';
 import './App.css';
 import NewWorkspace from './pages/NewWorkspace';
 import Login from './pages/Login';
-import ForgotPassword from "./pages/forgotPassword"
+import ForgotPassword from './pages/ForgotPassword';
 import ViewWorkspacePage from './pages/ViewWorkspacePage';
 import NewBoard from './pages/NewBoard';
 import Logout from './pages/Logout';

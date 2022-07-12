@@ -6,7 +6,7 @@ function NewWorkspace() {
     // navigate object for modifying browser history/redirect
     const navigate = useNavigate();
     
-    function newWorkspaceHandler(workspace:any) {
+    function newWorkspaceHandler(workspace) {
         if (localStorage.getItem("user") === null) {
             alert("You must be logged in to create a workspace");
             return;
@@ -14,7 +14,7 @@ function NewWorkspace() {
 
         // User is logged in
         axios.post("http://localhost:8080/addWorkspace", workspace)
-            .then((response:any) => {
+            .then((response) => {
                 console.log(response);
                 const userString = localStorage.getItem("user");
                 if (userString === null)
@@ -23,14 +23,14 @@ function NewWorkspace() {
                     alert("If you're somehow reading this something went very wrong");
                     return;
                 }
-                const user:any = JSON.parse(userString);
+                const user = JSON.parse(userString);
                 const data = {
                     userEmail: user.email,
                     workspaceId: response.data.id.toString()
                 };
                 console.log(data);
                 return axios.put("http://localhost:8080/assignWorkspaceUser", data)
-                    .then((response:any) => {
+                    .then((response) => {
                         console.log(response);
                         navigate("/workspaces", { replace: true });
                     });

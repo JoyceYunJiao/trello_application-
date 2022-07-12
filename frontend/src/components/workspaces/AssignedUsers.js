@@ -13,13 +13,13 @@ function AssignedUsers() {
 
     function getAssignedUsers() {
         axios.get("http://localhost:8080/getAssignedUsers/" + id)
-            .then((response:any) => {
+            .then((response) => {
                 setUsers(response.data);
             }
         );
     }
 
-    function assignUser(body:any) {
+    function assignUser(body) {
         axios.put("http://localhost:8080/assignWorkspaceUser/", body)
             .then(() => getAssignedUsers());
     }
@@ -32,7 +32,7 @@ function AssignedUsers() {
         <Container>
             <h2>Assigned users</h2>
             <ul>
-                {users.map((user:any) => {
+                {users.map((user) => {
                     return <li key={user.id}>{user.username}</li>;
                 }
                 )}

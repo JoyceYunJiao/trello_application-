@@ -9,7 +9,7 @@ function NewBoard() {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    function newBoardHandler(board:any) {
+    function newBoardHandler(board) {
         axios.post("http://localhost:8080/addBoard/", board)
             .then(() => navigate("/workspaces/"+id, { replace: true }));
     }

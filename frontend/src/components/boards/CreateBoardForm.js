@@ -2,15 +2,15 @@ import { Button, TextField, Typography } from '@mui/material';
 import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
-function CreateBoardForm(props:any) {
+function CreateBoardForm(props) {
     const {id} = useParams();
 
     /* ToDo: Create board name variable using useRef */
-    const boardNameRef:any = useRef();
+    const boardNameRef = useRef();
     /* ToDo: Create board description variable using useRef */
-    const boardDespRef:any = useRef();
+    const boardDespRef = useRef();
 
-    function createBoard(e:any) {
+    function createBoard(e) {
         e.preventDefault();
         /* ToDo: Implement createBoard function */
         //read the values 

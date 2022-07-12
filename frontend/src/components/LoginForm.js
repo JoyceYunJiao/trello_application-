@@ -1,12 +1,12 @@
 import React, {useRef} from "react";
 import { Button, Form } from "react-bootstrap";
 
-function LoginForm(props:any) {
+function LoginForm(props) {
 
-    const emailRef:any = useRef();
-    const passwordRef:any = useRef();
+    const emailRef = useRef();
+    const passwordRef = useRef();
 
-    function submitLoginForm(event:any){
+    function submitLoginForm(event){
 
         event.preventDefault();
         const email = emailRef.current.value;

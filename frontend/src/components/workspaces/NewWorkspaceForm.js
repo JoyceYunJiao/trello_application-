@@ -1,11 +1,11 @@
 import { createRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 
-function NewWorkspaceForm(props:any) {
-    const title:any = createRef();
-    const description:any = createRef();
+function NewWorkspaceForm(props) {
+    const title = createRef();
+    const description = createRef();
 
-    const createWorkspace = (e:any) => {
+    const createWorkspace = (e) => {
         e.preventDefault();
 
         const workspaceName = title.current.value;

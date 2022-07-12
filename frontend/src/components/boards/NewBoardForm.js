@@ -1,12 +1,12 @@
 import { createRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 
-function NewBoardForm(props:any) {
+function NewBoardForm(props) {
 
-    const title:any = createRef();
-    const description:any = createRef();
+    const title = createRef();
+    const description = createRef();
 
-    const createBoard = (e:any) => {
+    const createBoard = (e) => {
         e.preventDefault();
 
         const boardName = title.current.value;

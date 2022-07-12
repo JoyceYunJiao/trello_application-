@@ -96,15 +96,14 @@ public class User {
         this.username = username;
     }
 
-    public String getAnswer() {
+    public Set<Workspace> getWorkspaces() {
+        return workspaces;
+    }
+    public String getSecurityAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public Set<Workspace> getWorkspaces() {
-        return workspaces;
+    public void setSecurityAnswer(String securityAnswer) {
+        this.answer = securityAnswer;
     }
 }

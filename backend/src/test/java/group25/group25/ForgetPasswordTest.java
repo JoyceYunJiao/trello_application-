@@ -1,9 +1,8 @@
 package group25.group25;
 
-import group25.group25.passwordForgot.controller.passwordController;
-
-import group25.group25.passwordForgot.model.users;
-import group25.group25.passwordForgot.repository.CustomerRepository;
+import group25.group25.usermanagement.controller.UserController;
+import group25.group25.usermanagement.model.User;
+import group25.group25.usermanagement.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,15 @@ import static org.mockito.Mockito.*;
 public class ForgetPasswordTest {
 
     @MockBean
-    CustomerRepository customerRepository;
+    UserRepository userRepository;
 
     @Autowired
-    passwordController controller;
+    UserController controller;
 
     @Test
     void testShowUserByPassword(){
         String mail = "testPassword@test.com";
-        users tempUser = new users("testPassword@test.com","testFname","testLname","testPassword","testUsername");
+        User tempUser = new User("testPassword@test.com","testFname","testLname","testPassword","testUsername", "answer");
         when(controller.showUserByPassword(mail)).thenReturn(tempUser);
         assertEquals(tempUser, controller.showUserByPassword(mail),"wrong testShowUserByPassword");
     }
@@ -37,8 +36,8 @@ public class ForgetPasswordTest {
 
         String newPassword = "newPassword";
         String mail = "testPassword@test.com";
-        customerRepository.updateUserPasswordByEmail(newPassword,mail);
-        verify(customerRepository).updateUserPasswordByEmail(newPassword,mail);
+        userRepository.updateUserPasswordByEmail(newPassword,mail);
+        verify(userRepository).updateUserPasswordByEmail(newPassword,mail);
     }
 
 

@@ -5,8 +5,7 @@ import java.util.List;
 
 import group25.group25.board.model.Board;
 import group25.group25.board.repository.BoardRepository;
-import group25.group25.board.service.BoardService;
-import group25.group25.board.serviceimpl.BoardServiceimpl;
+import group25.group25.board.serviceimpl.BoardServiceImpl;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -26,7 +24,7 @@ public class BoardServiceImplTest {
     private BoardRepository boardRepository;
 
     @InjectMocks
-    private BoardServiceimpl boardServiceimpl = new BoardServiceimpl();
+    private BoardServiceImpl boardServiceimpl = new BoardServiceImpl();
 
     @Test
     public void addBoardTest(){

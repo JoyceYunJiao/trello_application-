@@ -13,6 +13,7 @@ import java.util.Set;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
+    //TODO: User repository should be dealt with on service layer
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping(value = "login", consumes = "application/json", produces = "application/json")
-        public User login(@RequestBody User user){
+    public User login(@RequestBody User user){
         return  userService.login(user.getEmail(), user.getPassword());
     }
 
@@ -48,4 +49,17 @@ public class UserController {
         return userService.register(userModel);
     }
 
+    // Password/security question management
+
+    // update the password by entered mail
+    @PostMapping (path = "/updateUserPasswordByEmail")
+    public void updateUserPasswordByEmail(@RequestParam(name = "newPassword") String newPassword,@RequestParam(name = "email") String email){
+        userRepository.updateUserPasswordByEmail(newPassword,email);
+    }
+
+    //input the mail and show user information |||||need rename later||||||
+    @GetMapping(path = "/showUserByPassword/{mail}")
+    public User showUserByPassword(@PathVariable String mail){
+        return userRepository.findUserByEmail(mail);
+    }
 }

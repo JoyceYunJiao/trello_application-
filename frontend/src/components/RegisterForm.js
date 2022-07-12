@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Container } from "react-bootstrap";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
 function RegisterForm(props){
     const fNameRef = useRef();
@@ -58,21 +58,57 @@ function RegisterForm(props){
     }
 
     return(
-        <Container>
-            <p>Register your account here. Please ensure all fields are filled, your password is at least 8 characters long and contains at least 1 uppercase, 1 lowercase, 1 number and 1 special character.</p>
+        <Card>
+            <Card.Body>
+                <p>Register your account here. Please ensure all fields are filled, your password is at least 8 characters long and contains at least 1 uppercase, 1 lowercase, 1 number and 1 special character.</p>
 
-        <form onSubmit={submitRegisterForm}> 
-            <input type="text" required placeholder="First Name" ref={fNameRef}/>
-            <input type="text" required placeholder="Last Name" ref={lNameRef}/>
-            <input type="text" required placeholder="Username" ref={usernameRef}/>
-            <input type="email" required placeholder="Email" ref={emailRef}/>
-            <input type="password" required placeholder="Password" ref={passwordRef} min={8}/>
-            <input type="text" required placeholder="Name of first pet" ref={answerRef}/>
-            <button>Submit</button>
+                <Form onSubmit={submitRegisterForm}>
+                    <Form.Group controlId="formFirstName" as={Row}>
+                        <Form.Label column sm={3}>First Name</Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="text" placeholder="Enter first name" ref={fNameRef} required/>
+                        </Col>
+                    </Form.Group>
 
-        </form>
+                    <Form.Group controlId="formLastName" as={Row}>
+                        <Form.Label column sm={3}>Last Name</Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="text" placeholder="Enter last name" ref={lNameRef} required/>
+                        </Col>
+                    </Form.Group>
 
-        </Container>
+                    <Form.Group controlId="formUsername" as={Row}>
+                        <Form.Label column sm={3}>Username</Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="text" placeholder="Enter username" ref={usernameRef} required/>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group controlId="formEmail" as={Row}>
+                        <Form.Label column sm={3}>Email</Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="email" placeholder="Enter email" ref={emailRef} required/>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group controlId="formPassword" as={Row}>
+                        <Form.Label column sm={3}>Password</Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="password" placeholder="Enter password" ref={passwordRef} required min={8}/>
+                        </Col>
+                    </Form.Group>
+                    
+                    <Form.Group controlId="formAnswer" className="mt-3" as={Row}>
+                        <Form.Label column sm={5}>Security Question: What was the name of your first pet?</Form.Label>
+                        <Col sm={7}>
+                            <Form.Control type="text" placeholder="Name of first pet" ref={answerRef} required/>
+                        </Col>
+                    </Form.Group>
+
+                    <Button type="submit" className="w-50 mt-3">Register</Button>
+                </Form>
+            </Card.Body>
+        </Card>
 
     );
 }

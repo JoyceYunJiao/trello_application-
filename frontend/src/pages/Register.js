@@ -1,5 +1,6 @@
 import RegisterForm from "../components/RegisterForm";
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 
 function RegisterPage(){
@@ -18,7 +19,9 @@ function RegisterPage(){
     return(
         <div>
             <h1>Register Page</h1>
-            <RegisterForm registerUser={RegisterUserHandler}/>
+            <Container>
+                <RegisterForm registerUser={RegisterUserHandler}/>
+            </Container>
         </div>
     );
 }

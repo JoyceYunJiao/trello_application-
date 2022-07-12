@@ -1,10 +1,10 @@
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button, CardActions } from '@mui/material';
 import axios from 'axios';
 
 function Board(props) {
     return (
         
-        <Card elevation={6}>
+        <Card>
             <CardContent>
                 <Typography component='h4' variant='h4'>
                     {props.board.title}
@@ -12,15 +12,16 @@ function Board(props) {
                 <Typography component='p' variant='body1'>
                     {props.board.description}
                 </Typography>
-                <Button variant='contained' sx={{ marginTop: '16px' }}>
+            </CardContent>
+            <CardActions>
+                <Button variant='contained' disableElevation>
                     View All Tasks
                 </Button>
 
-                <Button onClick={() => {deleteBoardHandler(props.board)}}>
-                    delete
+                <Button variant="outlined" onClick={() => {deleteBoardHandler(props.board)}}>
+                    Delete
                 </Button>
-                
-            </CardContent>
+            </CardActions>
         </Card>
     );
 

@@ -9,6 +9,7 @@ import ViewWorkspacePage from './pages/ViewWorkspacePage';
 import NewBoard from './pages/NewBoard';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
 
 
         </Routes>
+
+        <Footer />
       </Router>
     </div>
   );

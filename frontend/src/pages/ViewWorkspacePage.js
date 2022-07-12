@@ -28,7 +28,7 @@ function ViewWorkspacePage(props) {
     return (
         <Container>
             <Workspace workspace={workspaceData}/>
-            <Button href={"/workspaces/"+id+"/createBoard"}>Create Board</Button>
+            <Button href={"/workspaces/"+id+"/createBoard"} className="w-50 my-3 p-3">Create Board</Button>
         </Container>
     );
 }

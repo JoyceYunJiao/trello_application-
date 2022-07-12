@@ -1,5 +1,5 @@
 import { createRef } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 function AssignUserForm(props) {
@@ -19,16 +19,23 @@ function AssignUserForm(props) {
     }
 
     return (
-        <Form onSubmit={assignUser}>
-            <Form.Group controlId="formAssignEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter user email" ref={email}/>
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-                Assign User
-            </Button>
-        </Form>
+        <Card>
+            <Card.Body>
+                <Form onSubmit={assignUser}>
+                    <Form.Group as={Row} controlId="formAssignEmail">
+                        <Form.Label column sm={2}>Assign new user by email</Form.Label>
+                        <Col sm={7}>
+                            <Form.Control type="email" placeholder="Enter user email" ref={email} />
+                        </Col>
+                        <Col sm={2}>
+                            <Button variant="primary" type="submit">
+                                Assign User
+                            </Button>
+                        </Col>
+                    </Form.Group>
+                </Form>
+            </Card.Body>
+        </Card>
     )
 }
 

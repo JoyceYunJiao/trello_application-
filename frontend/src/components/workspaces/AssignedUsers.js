@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, ListGroup } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import AssignUserForm from "./AssignUserForm";
 
@@ -29,12 +29,12 @@ function AssignedUsers() {
     return (
         <Container>
             <h2>Assigned users</h2>
-            <ul>
+            <ListGroup>
                 {users.map((user) => {
-                    return <li key={user.id}>{user.username}</li>;
+                    return <ListGroup.Item key={user.id}>{user.firstName} {user.lastName} ({user.username})</ListGroup.Item>;
                 }
                 )}
-            </ul>
+            </ListGroup>
 
             <AssignUserForm onChange={assignUser} />
         </Container>

@@ -22,6 +22,8 @@ function NewWorkspaceForm(props) {
 
     return (
         <Container>
+            <h1>Create New Workspace</h1>
+
             <Form onSubmit={createWorkspace}>
                 <Form.Group controlId="formWorkspaceTitle">
                     <Form.Label>Title</Form.Label>

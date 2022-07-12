@@ -1,7 +1,10 @@
 import { Card, CardContent, Typography, Button, CardActions } from '@mui/material';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function Board(props) {
+    const {id} = useParams();
+
     return (
         
         <Card>
@@ -14,7 +17,7 @@ function Board(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='contained' disableElevation>
+                <Button variant='contained' disableElevation href={id+'/'+props.board.id}>
                     View All Tasks
                 </Button>
 

@@ -10,6 +10,7 @@ import NewBoard from './pages/NewBoard';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Footer from './components/Footer';
+import BoardPage from './pages/BoardPage';
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPassword/>} />
           <Route path='/register' element={<Register/>} />
 
+          {/* Board page */}
+          <Route path="workspaces/:id/:boardId" element={<BoardPage/>} />
 
         </Routes>
 

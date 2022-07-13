@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import List from "../components/boards/lists/List";
+import ListFilterForm from "../components/boards/lists/ListFilterForm";
 
 function BoardPage() {
     // Get the workspace id and board id from the URL
@@ -17,6 +18,9 @@ function BoardPage() {
     const getBoard = () => {
         axios.get(`http://localhost:8080/board/${boardId}`)
             .then(response => {
+                
+                // TODO: Filter out lists by parameters in the URL
+
                 setBoard(response.data);
                 setLoading(false);
             }
@@ -46,18 +50,23 @@ function BoardPage() {
                 </Col>
             </Row>
 
+            {/* Search filter */}
+            <ListFilterForm />
+
+
             {/* Board lists */}
             <Row>
-            {board.lists.map(list => (
-                <Col key={list.id}>
-                    <List list={list} />
+                {board.lists.map(list => (
+                    <Col key={list.id}>
+                        <List list={list} />
+                    </Col>
+                ))}
+
+                <Col>
+                    <Button variant="secondary" href={boardId+"/createList"} className="w-100">
+                        Create List
+                    </Button>
                 </Col>
-            ))}
-            <Col>
-                <Button variant="secondary" href={boardId+"/createList"} className="w-100">
-                    Create List
-                </Button>
-            </Col>
             </Row>
         </Container>
     );

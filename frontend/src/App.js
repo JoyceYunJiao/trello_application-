@@ -11,6 +11,8 @@ import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Footer from './components/Footer';
 import BoardPage from './pages/BoardPage';
+import NewListForm from './components/boards/lists/NewListForm';
+import NewListPage from './pages/NewListPage';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
           {/* Board page */}
           <Route path="workspaces/:id/:boardId" element={<BoardPage/>} />
 
+          {/* Create list page */}
+          <Route path="workspaces/:id/:boardId/createList" element={<NewListPage/>} />
         </Routes>
 
         <Footer />

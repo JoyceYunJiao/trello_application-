@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import List from "../components/boards/lists/List";
 
@@ -34,8 +34,17 @@ function BoardPage() {
 
     return (
         <Container>
-            <h1>{board.title}</h1>
-            <p>{board.description}</p>
+            <Row className="my-4">
+                <Col sm={2}>
+                    <Button href={"../"+id}>
+                        Return to Workspace
+                    </Button>
+                </Col>
+                <Col className="text-start ml-4">
+                    <h1>{board.title}</h1>
+                    <p>{board.description}</p>
+                </Col>
+            </Row>
 
             {/* Board lists */}
             <Row>
@@ -44,6 +53,11 @@ function BoardPage() {
                     <List list={list} />
                 </Col>
             ))}
+            <Col>
+                <Button variant="secondary" href={boardId+"/createList"} className="w-100">
+                    Create List
+                </Button>
+            </Col>
             </Row>
         </Container>
     );

@@ -1,5 +1,5 @@
 import { Grid, Typography, } from '@mui/material';
-import Board from './Board';
+import BoardCard from './BoardCard';
 
 function ViewBoards(props) {
     return (
@@ -9,7 +9,7 @@ function ViewBoards(props) {
                 {props.boards.map((board) => {
                     return (
                         <Grid item xs={12} sm={12} md={4} lg={3} key={board.id}>
-                            <Board board={board} key={board.id}/>
+                            <BoardCard board={board} key={board.id}/>
                         </Grid>
                     );
                 })}

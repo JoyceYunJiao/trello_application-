@@ -2,7 +2,7 @@ import { Card, CardContent, Typography, Button, CardActions } from '@mui/materia
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function Board(props) {
+function BoardCard(props) {
     const {id} = useParams();
 
     return (
@@ -38,4 +38,4 @@ function Board(props) {
 
 }
 
-export default Board;
+export default BoardCard;

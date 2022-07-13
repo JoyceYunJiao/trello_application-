@@ -3,7 +3,10 @@ package group25.group25.board.model;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import group25.group25.list.model.List;
 import group25.group25.workspace.model.Workspace;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "boards")
@@ -31,6 +34,10 @@ public class Board {
 
     @Column(name = "board_description")
     private String description;
+
+    @OneToMany
+    @JoinColumn(name = "board_id")
+    private Set<List> lists;
 
     @ManyToOne
     @JoinColumn(name = "workspace_id", insertable = false, updatable = false)
@@ -85,5 +92,13 @@ public class Board {
 
     public void setWorkspaceId(int workspaceId) {
         this.workspaceId = workspaceId;
+    }
+
+    public Set<List> getLists() {
+        return lists;
+    }
+
+    public void setLists(Set<List> lists) {
+        this.lists = lists;
     }
 }

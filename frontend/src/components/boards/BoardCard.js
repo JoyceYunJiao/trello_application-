@@ -30,8 +30,12 @@ function BoardCard(props) {
 
     function deleteBoardHandler(board){
         console.log(board);
-        //implement the delete board function 
-        //unsure if the URL is the right one 
+        // Prompt user to confirm deletion
+        const confirm = window.confirm(`Are you sure you want to delete board "${board.title}"? This will remove all tasks associated with this board, and cannot be undone.`);
+
+        if (!confirm)
+            return;
+
         axios.post('http://localhost:8080/deleteBoard', board)
         .then(() => { window.location.reload() })
     };

@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Service
 public interface TaskService {
+
     public Set<Task> getTaskByListId(int listId);
 
     public Task saveTask(Task task);

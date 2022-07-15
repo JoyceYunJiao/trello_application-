@@ -12,13 +12,13 @@ import java.util.Set;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer>{
 
-    @Query("SELECT t FROM Task t where t.due_date = ?1")
+    @Query("SELECT t FROM Task t where t.date = ?1")
     public Set<Task> findByDueDate (Integer date);
 
-    @Query("SELECT t FROM Task t where t.task_title = ?1")
+    @Query("SELECT t FROM Task t where t.title = ?1")
     public Set<Task> findByTitle(String title);
 
-    @Query("SELECT t FROM Task t where t.task_user = ?1")
+    @Query("SELECT t FROM Task t where t.user = ?1")
     public Set<Task> findByUser(String user);
 
     @Query("SELECT t FROM Task t where t.list_id = ?1")

@@ -1,24 +1,32 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import TaskCard from "./TaskCard";
 
 function List(props) {
-    // const [cards, getCards] = useState([]);
+    const [cards, getCards] = useState([]);
     
     const getTasks = () => {
-        // TODO: Backend for getting Cards
-        // axios.get(`http://localhost:8080/getCards/${boardId}`)
-        //     .then(response => {
-        //         getCards(response.data);
-        //     });
+        axios.get(`http://localhost:8080/getTaskByList/${props.list.id}`)
+            .then(response => {
+                getCards(response.data);
+            });
     }
 
+    useEffect(() => {
+        getTasks();
+    }, []);
+
     return (
-        <Card>
+        <Card className="bg-light">
             <Card.Body>
                 <Card.Title>{props.list.title}</Card.Title>
                 <Card.Text>{props.list.description}</Card.Text>
 
-                {/* TODO: Render all task cards */}
+                {/* Render all task cards */}
+                {cards.map(task => (
+                    <TaskCard key={task.id} task={task} />
+                ))}
             </Card.Body>
         </Card>
     );

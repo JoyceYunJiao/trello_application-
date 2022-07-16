@@ -55,19 +55,19 @@ function BoardPage() {
 
 
             {/* Board lists */}
-            <Row>
+            <div className="overflow-auto d-flex flex-row pb-5">
                 {board.lists.map(list => (
-                    <Col key={list.id}>
+                    <div key={list.id} className="me-4" style={{minWidth:"13rem"}}>
                         <List list={list} />
-                    </Col>
+                    </div>
                 ))}
 
-                <Col>
+                <div style={{minWidth:"13rem"}}>
                     <Button variant="secondary" href={boardId+"/createList"} className="w-100">
                         Create List
                     </Button>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </Container>
     );
 }

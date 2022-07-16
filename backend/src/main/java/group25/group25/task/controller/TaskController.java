@@ -28,7 +28,7 @@ public class TaskController {
         return taskRepository.findAll();
     }
 
-    @GetMapping(value = "getTaskByList/{id}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByList/{id}", produces = "application/json")
     public List<Task> findByListID(@PathVariable("id") int list_id){
         return  taskService.getTaskByListId(list_id);
     }

@@ -25,6 +25,7 @@ export default function EditTask() {
     const { id, boardId,listId,taskID} = useParams();
 
     //我现在需要获取该board中所有list的名字 从list调取
+    //get the boardID and find all lists name in this board
     const fetchBoards = () => {
         axios.get(`http://localhost:8080/getLists/${boardId}`)
             .then(response => {
@@ -41,8 +42,8 @@ export default function EditTask() {
 
 
     const handleChange = event => {
-    console.log(event.target.value);
-    setSelected(event.target.value);
+        console.log(event.target.value);
+        setSelected(event.target.value);
     //   console.log("the selected task list is "+selected);
 
     };
@@ -60,31 +61,16 @@ export default function EditTask() {
             name="radio-buttons-group"
         >
 
-            {boards.map(boards => (
-                <ListNames key={boards.id} boards={boards} />
-            ))}
+        {boards.map(boards => (
+            <FormControlLabel
+                    key= {boards.title}
+                    value= {boards.title}
+                    control={<Radio />} 
+                    onChange={handleChange}
+                    label= {boards.title}
+            />
+    ))}
 
-            <FormControlLabel
-                value="ToDo" 
-                control={<Radio />} 
-                checked={selected === 'ToDo'}
-                onChange={handleChange}
-                label="ToDo" 
-            />
-            <FormControlLabel
-                value="Doing" 
-                control={<Radio />} 
-                checked={selected === 'Doing'}
-                onChange={handleChange}
-                label="Doing" 
-            />
-            <FormControlLabel 
-                value="Done" 
-                control={<Radio />} 
-                checked={selected === 'Done'}
-                onChange={handleChange}
-                label="Done" 
-            />
         </RadioGroup>
 
 
@@ -97,11 +83,6 @@ export default function EditTask() {
                 />
             </Form.Group>
 
-            {/* {board.lists.map(list => (
-                        <Col key={list.id}>
-                            <List list={list} />
-                        </Col>
-                    ))} */}
         </Col>
         </FormControl>
 

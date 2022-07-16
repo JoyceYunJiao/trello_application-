@@ -1,23 +1,35 @@
 import { Button, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import ListNames from "./ShowAllListName";
+
+
 
 function ShowAllListName(props) {
     const {id, boardId} = useParams();
 
     return (
-            <Card className="shadow-sm">
-                {/* <Button
-                    variant="outline-dark"
-                    className="m-0 p-0"
-                    title={`Edit task "${props.task.title}"`}
-                    href={`./${boardId}/${props.task.id}`}
-                > */}
-                    <Card.Body>
-                        <Card.Title>{props.boards.title}</Card.Title>
-                        {/* <Card.Text>{props.task.description}</Card.Text> */}
-                    </Card.Body>
-                {/* </Button> */}
-            </Card>
+        <FormControl>
+        <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="ToDo"
+            name="radio-buttons-group"
+        >
+        <FormControlLabel
+                value= {props.boards.title}
+                control={<Radio />} 
+                // checked={selected === 'ToDo'}
+                // onChange={handleChange}
+                label= {props.boards.title}
+            />
+        </RadioGroup>
+        </FormControl>
+
+
     );
 }
 

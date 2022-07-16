@@ -57,7 +57,7 @@ public class UserController {
         userRepository.updateUserPasswordByEmail(newPassword,email);
     }
 
-    //input the mail and show user information |||||need rename later||||||
+    //input the mail and show user information
     @GetMapping(path = "/showUserByPassword/{mail}")
     public User showUserByPassword(@PathVariable String mail){
         return userRepository.findUserByEmail(mail);

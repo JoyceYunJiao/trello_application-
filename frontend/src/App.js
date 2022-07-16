@@ -14,6 +14,8 @@ import BoardPage from './pages/BoardPage';
 import NewListForm from './components/boards/lists/NewListForm';
 import NewListPage from './pages/NewListPage';
 import CreateTaskForm from './components/boards/lists/CreateTaskForm';
+import EditTask from './components/boards/lists/EditTask';
+
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
 
           {/* New task page */}
           <Route path="workspaces/:id/:boardId/:listId/createTask" element={<CreateTaskForm/>} />
+          <Route path="workspaces/:id/:boardId/:listId/:taskID" element={<EditTask/>} />
+
         </Routes>
 
         <Footer />

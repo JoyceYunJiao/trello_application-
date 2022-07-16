@@ -26,6 +26,18 @@ public class Task {
     @Column(name = "due_date")
     private Integer date;
 
+    public Task(String title, String description, String user, Integer list_id, Integer date) {
+        this.title = title;
+        this.description = description;
+        this.user = user;
+        this.list_id = list_id;
+        this.date = date;
+    }
+
+    public Task(){
+
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

@@ -3,12 +3,19 @@ package group25.group25.task.service;
 import group25.group25.task.model.Task;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
 public interface TaskService {
 
-    public Set<Task> getTaskByListId(int listId);
+    public List<Task> getTaskByListId(int listId);
+
+    public List<Task> getTaskByTitle (String title);
+
+    public List<Task> getTaskByUser(String user);
+
+    public List<Task> getTaskByDueDate(int dueDate);
 
     public Task saveTask(Task task);
 
@@ -16,6 +23,6 @@ public interface TaskService {
 
     public void assignUser(Task task, String user);
 
-    public void updateDueDate(Task task, int due_date);
+    public void updateDueDate(Task task, int dueDate);
 
 }

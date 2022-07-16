@@ -47,6 +47,8 @@ function App() {
 
           {/* New task page */}
           <Route path="workspaces/:id/:boardId/:listId/createTask" element={<CreateTaskForm/>} />
+          {/* <Route path="workspaces/:id/:boardId/:taskID" element={<EditTask/>} /> */}
+
           <Route path="workspaces/:id/:boardId/:listId/:taskID" element={<EditTask/>} />
 
         </Routes>

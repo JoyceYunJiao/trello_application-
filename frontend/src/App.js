@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import BoardPage from './pages/BoardPage';
 import NewListForm from './components/boards/lists/NewListForm';
 import NewListPage from './pages/NewListPage';
+import CreateTaskForm from './components/boards/lists/CreateTaskForm';
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
 
           {/* Create list page */}
           <Route path="workspaces/:id/:boardId/createList" element={<NewListPage/>} />
+
+          {/* New task page */}
+          <Route path="workspaces/:id/:boardId/:listId/createTask" element={<CreateTaskForm/>} />
         </Routes>
 
         <Footer />

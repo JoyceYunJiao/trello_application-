@@ -3,34 +3,34 @@ package group25.group25.task.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "task")
+@Table(name = "cards")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "task_id")
+    @Column(name = "card_id")
     private Integer id;
 
-    @Column(name = "task_title")
+    @Column(name = "card_title")
     private String title;
 
-    @Column(name = "task_description")
+    @Column(name = "card_description")
     private String description;
 
-    @Column(name = "task_user")
+    @Column(name = "card_user")
     private String user;
 
     @Column(name = "list_id")
-    private Integer list_id;
+    private Integer listId;
 
-    @Column(name = "due_date")
-    private Integer date;
+    @Column(name = "card_due_date")
+    private String date;
 
-    public Task(String title, String description, String user, Integer list_id, Integer date) {
+    public Task(String title, String description, String user, Integer list_id, String date) {
         this.title = title;
         this.description = description;
         this.user = user;
-        this.list_id = list_id;
+        this.listId = list_id;
         this.date = date;
     }
 
@@ -66,19 +66,14 @@ public class Task {
 
     public void setUser(String user) { this.user = user; }
 
-    public Integer getList_id() { return list_id; }
+    public Integer getListId() { return listId; }
 
-    public void setList_id(Integer list_id) { this.list_id = list_id; }
-
-
-    public Integer getDate() { return date; }
-
-    public void setDate(Integer date) { this.date = date; }
+    public void setListId(Integer list_id) { this.listId = list_id; }
 
 
+    public String getDate() { return date; }
 
-
-
+    public void setDate(String date) { this.date = date; }
 }
 
 

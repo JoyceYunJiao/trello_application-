@@ -21,11 +21,11 @@ public interface TaskRepository extends JpaRepository<Task, Integer>{
     @Query("SELECT t FROM Task t where t.user = ?1")
     public List<Task> findByUser(String user);
 
-    @Query("SELECT t FROM Task t where t.list_id = ?1")
+    @Query("SELECT t FROM Task t where t.listId = ?1")
     public List<Task> findByListID(int list_id);
 
     @Modifying
-    @Query("UPDATE Task t SET t.list_id =?1 WHERE t.title =?2")
+    @Query("UPDATE Task t SET t.listId =?1 WHERE t.title =?2")
     public void updateStatusByTitle(Integer listId, String title);
 
     @Modifying

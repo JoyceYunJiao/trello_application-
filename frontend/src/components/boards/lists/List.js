@@ -1,20 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import TaskCard from "./TaskCard";
 
 function List(props) {
-    const [cards, getCards] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const { id, boardId } = useParams();
     
-    const getTasks = () => {
+    const fetchTasks = () => {
         axios.get(`http://localhost:8080/getTaskByList/${props.list.id}`)
             .then(response => {
-                getCards(response.data);
+                setTasks(response.data);
             });
     }
 
     useEffect(() => {
-        getTasks();
+        fetchTasks();
     }, []);
 
     return (
@@ -24,9 +26,18 @@ function List(props) {
                 <Card.Text>{props.list.description}</Card.Text>
 
                 {/* Render all task cards */}
-                {cards.map(task => (
+                {tasks.map(task => (
                     <TaskCard key={task.id} task={task} />
                 ))}
+
+                {/* New task button */}
+                <Button
+                    variant="outline-primary"
+                    href={`./${boardId}/${props.list.id}/createTask`}
+                    className="w-100 mt-3"
+                >
+                    New Task
+                </Button>
             </Card.Body>
         </Card>
     );

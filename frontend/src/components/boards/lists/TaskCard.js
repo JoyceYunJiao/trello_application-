@@ -10,7 +10,7 @@ function TaskCard(props) {
                     variant="outline-dark"
                     className="m-0 p-0"
                     title={`Edit task "${props.task.title}"`}
-                    href={`/workspaces/${id}/${boardId}/${props.task.listId}/${props.task.id}`}
+                    href={`/workspaces/${id}/${boardId}/${props.task.listId}/${props.task.id}/editTask`}
                 >
                     <Card.Body>
                         <Card.Title>{props.task.title}</Card.Title>

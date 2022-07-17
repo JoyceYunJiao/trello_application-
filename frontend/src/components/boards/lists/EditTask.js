@@ -1,4 +1,3 @@
-
 import React, {useState,useEffect} from 'react';
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
@@ -11,13 +10,23 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import ListNames from "./ShowAllListName";
+// import ListNames from "./ShowAllListName";
 
+// import Stack from '@mui/material/Stack';
+// import TextField from '@mui/material/TextField';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 
 
 
 export default function EditTask() {
     const [boards, setBoards] = useState([]);
+    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+
 
     const [selected, setSelected] = useState('');
     const [newDate, setNewDate] = useState(new Date());
@@ -49,6 +58,12 @@ export default function EditTask() {
     };
 
 
+
+    const dateChange = (newValue) => {
+      setValue(newValue);
+    };
+
+
         // console.log("the selected new date is "+newDate);
         // console.log("the board id is "+boardId);
 
@@ -69,9 +84,28 @@ export default function EditTask() {
                     onChange={handleChange}
                     label= {boards.title}
             />
-    ))}
+        ))}
 
         </RadioGroup>
+
+
+
+        {/* 抄的 */}
+        {/* <LocalizationProvider dateAdapter={AdapterDateFns}> */}
+            {/* <DatePicker
+                label="Basic example"
+                value={value}
+                onChange={(newValue) => {
+                setValue(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+            /> */}
+        {/* </LocalizationProvider> */}
+
+            
+
+
+
 
 
         <Col>

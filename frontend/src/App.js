@@ -43,13 +43,13 @@ function App() {
           <Route path="workspaces/:id/:boardId" element={<BoardPage/>} />
 
           {/* Create list page */}
-          <Route path="workspaces/:id/:boardId/createList" element={<NewListPage/>} />
+          <Route path="workspaces/:id/:boardId/:listId/createList" element={<NewListPage/>} />
 
           {/* New task page */}
           <Route path="workspaces/:id/:boardId/:listId/createTask" element={<CreateTaskForm/>} />
           {/* <Route path="workspaces/:id/:boardId/:taskID" element={<EditTask/>} /> */}
 
-          <Route path="workspaces/:id/:boardId/:listId/:taskID" element={<EditTask/>} />
+          <Route path="workspaces/:id/:boardId/:listId/:taskID/editTask" element={<EditTask/>} />
 
         </Routes>
 

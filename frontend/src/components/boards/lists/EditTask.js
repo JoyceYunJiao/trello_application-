@@ -22,6 +22,7 @@ export default function EditTask() {
     const [newDate, setNewDate] = useState(new Date());
 
     const { id, boardId,listId,taskID} = useParams();
+    let newBoardID=0;
 
     //我现在需要获取该board中所有list的名字 从list调取
     //get the boardID and find all lists name in this board
@@ -52,6 +53,14 @@ export default function EditTask() {
         console.log("in edit Task details");
 
         console.log("new date is "+ newDate+", new list is "+selected);
+
+        axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+selected)
+        .then(response => {
+            console.log("return value is: "+response.data);
+            newBoardID = response.data;
+        });
+
+
     }
 
 

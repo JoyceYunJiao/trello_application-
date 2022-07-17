@@ -1,5 +1,9 @@
 package group25.group25.task.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import group25.group25.list.model.List;
+import group25.group25.workspace.model.Workspace;
+
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +29,11 @@ public class Task {
 
     @Column(name = "card_due_date")
     private String date;
+
+    @ManyToOne
+    @JoinColumn(name = "list_id", insertable = false, updatable = false)
+    @JsonIgnore
+    private List list;
 
     public Task(String title, String description, String user, Integer list_id, String date) {
         this.title = title;
@@ -74,6 +83,14 @@ public class Task {
     public String getDate() { return date; }
 
     public void setDate(String date) { this.date = date; }
+
+    public List getList() {
+        return list;
+    }
+
+    public void setList(List list) {
+        this.list = list;
+    }
 }
 
 

@@ -15,6 +15,15 @@ function BoardPage() {
     // Board data
     const [board, setBoard] = useState();
 
+    // Filter stuff
+    const [inputText, setInputText] = useState("");
+    const inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+
+    // Get board data from backend
     const getBoard = () => {
         axios.get(`http://localhost:8080/board/${boardId}`)
             .then(response => {
@@ -62,14 +71,17 @@ function BoardPage() {
             </Row>
 
             {/* Search filter */}
-            <ListFilterForm />
+            <ListFilterForm onSearchChangeHandler={inputHandler} />
 
 
             {/* Board lists */}
             <div className="overflow-auto d-flex flex-row pb-5">
                 {board.lists.map(list => (
                     <div key={list.id} className="me-4" style={{minWidth:"13rem"}}>
-                        <List list={list} />
+                        <List
+                            list={list}
+                            filterText={inputText}
+                        />
                     </div>
                 ))}
 

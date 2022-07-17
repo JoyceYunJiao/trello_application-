@@ -6,18 +6,30 @@ import TaskCard from "./TaskCard";
 
 function List(props) {
     const [tasks, setTasks] = useState([]);
+    const [filteredTasks, setFilteredTasks] = useState([]);
     const { id, boardId } = useParams();
     
     const fetchTasks = () => {
         axios.get(`http://localhost:8080/getTaskByList/${props.list.id}`)
             .then(response => {
                 setTasks(response.data);
+                setFilteredTasks(response.data);
             });
+    }
+
+    const filterList = () => {
+        setFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(props.filterText)));
+        // console.log(filteredTasks);
     }
 
     useEffect(() => {
         fetchTasks();
     }, []);
+
+    // Filter on filterText change
+    useEffect(() => {
+        filterList();
+    }, [props.filterText]);
 
     return (
         <Card className="bg-light">
@@ -26,7 +38,7 @@ function List(props) {
                 <Card.Text>{props.list.description}</Card.Text>
 
                 {/* Render all task cards */}
-                {tasks.map(task => (
+                {filteredTasks.map(task => (
                     <TaskCard key={task.id} task={task} />
                 ))}
 

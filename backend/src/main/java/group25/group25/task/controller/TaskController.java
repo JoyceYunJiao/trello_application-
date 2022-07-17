@@ -4,7 +4,10 @@ package group25.group25.task.controller;
 import group25.group25.task.model.Task;
 import group25.group25.task.repository.TaskRepository;
 import group25.group25.task.service.TaskService;
+import group25.group25.usermanagement.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,37 +33,40 @@ public class TaskController {
 
     @GetMapping(value = "getTaskByList/{id}", produces = "application/json")
     public List<Task> findByListID(@PathVariable("id") Integer list_id){
-        return  taskService.getTaskByListId(list_id);
+        return  taskRepository.findByListID(list_id);
     }
 
-    @GetMapping(value = "getTaskByDueDate/{DueDate}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByDueDate/{DueDate}", produces = "application/json")
     public List<Task> findByDueDate(@PathVariable("DueDate") String dueDate){
-        return  taskService.getTaskByDueDate(dueDate);
+        return  taskRepository.findByDueDate(dueDate);
     }
 
-    @GetMapping(value = "getTaskByUser/{user}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByUser/{user}", produces = "application/json")
     public List<Task> findByUser(@PathVariable("user") String user){
-        return  taskService.getTaskByUser(user);
+        return  taskRepository.findByUser(user);
     }
 
-    @GetMapping(value = "getTaskByUser/{title}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByTitle/{title}", produces = "application/json")
     public List<Task> findByTitle(@PathVariable("title") String title){
-        return  taskService.getTaskByTitle(title);
+        return  taskRepository.findByTitle(title);
     }
 
-    @PostMapping(value = "changeStatus", consumes = "application/json", produces = "application/json")
-    public void changeStatus(@RequestParam(name = "id") Integer id, @RequestParam(name = "listId") Integer list_id) {
-        taskRepository.updateStatusById(list_id, id);
+    @Transactional
+    @PostMapping(value = "changeStatus", consumes = "application/json")
+    public void changeStatus(@RequestBody Task task) {
+        taskRepository.updateStatusById(task.getListId(),task.getId());
     }
 
-    @PostMapping(value = "updateDueDate", consumes = "application/json", produces = "application/json")
-    public void updateDueDate(@RequestParam(name = "id") Integer id, @RequestParam(name = "dueDate") String dueDate) {
-        taskRepository.updateDueDateById(dueDate, id);
+    @Transactional
+    @PostMapping(value = "updateDueDate", consumes = "application/json")
+    public void updateDueDate(@RequestBody Task task) {
+        taskRepository.updateDueDateById(task.getDate(), task.getId());
     }
 
-    @PostMapping(value = "assignUser", consumes = "application/json", produces = "application/json")
-    public void assignUser(@RequestParam(name = "id") Integer id, @RequestParam(name = "user") String user) {
-        taskRepository.updateUserById(user, id);
+    @Transactional
+    @PostMapping(value = "assignUser", consumes = "application/json")
+    public void assignUser(@RequestBody Task task) {
+        taskRepository.updateUserById(task.getUser(),task.getId());
     }
 
 

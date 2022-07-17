@@ -29,12 +29,12 @@ public class TaskController {
     }
 
     @GetMapping(value = "getTaskByList/{id}", produces = "application/json")
-    public List<Task> findByListID(@PathVariable("id") int list_id){
+    public List<Task> findByListID(@PathVariable("id") Integer list_id){
         return  taskService.getTaskByListId(list_id);
     }
 
     @GetMapping(value = "getTaskByDueDate/{DueDate}", consumes = "application/json", produces = "application/json")
-    public List<Task> findByDueDate(@PathVariable("DueDate") int dueDate){
+    public List<Task> findByDueDate(@PathVariable("DueDate") String dueDate){
         return  taskService.getTaskByDueDate(dueDate);
     }
 
@@ -49,18 +49,18 @@ public class TaskController {
     }
 
     @PostMapping(value = "changeStatus", consumes = "application/json", produces = "application/json")
-    public void changeStatus(@RequestParam(name = "task") Task task, @RequestParam(name = "listId") int list_id) {
-        taskService.changeStatus(task, list_id);
+    public void changeStatus(@RequestParam(name = "id") Integer id, @RequestParam(name = "listId") Integer list_id) {
+        taskRepository.updateStatusById(list_id, id);
     }
 
     @PostMapping(value = "updateDueDate", consumes = "application/json", produces = "application/json")
-    public void updateDueDate(@RequestParam(name = "task") Task task, @RequestParam(name = "dueDate") int dueDate) {
-        taskService.updateDueDate(task, dueDate);
+    public void updateDueDate(@RequestParam(name = "id") Integer id, @RequestParam(name = "dueDate") String dueDate) {
+        taskRepository.updateDueDateById(dueDate, id);
     }
 
     @PostMapping(value = "assignUser", consumes = "application/json", produces = "application/json")
-    public void assignUser(@RequestParam(name = "task") Task task, @RequestParam(name = "user") String user) {
-        taskService.assignUser(task, user);
+    public void assignUser(@RequestParam(name = "id") Integer id, @RequestParam(name = "user") String user) {
+        taskRepository.updateUserById(user, id);
     }
 
 

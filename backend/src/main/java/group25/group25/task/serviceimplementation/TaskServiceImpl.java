@@ -6,6 +6,7 @@ import group25.group25.task.repository.TaskRepository;
 import group25.group25.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public List<Task> getTaskByListId(int listId) {
+    public List<Task> getTaskByListId(Integer listId) {
 
         return taskRepository.findByListID(listId);
 
@@ -38,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTaskByDueDate(int dueDate) {
+    public List<Task> getTaskByDueDate(String dueDate) {
 
         return  taskRepository.findByDueDate(dueDate);
 
@@ -51,25 +52,5 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
-    @Override
-    public void changeStatus(Task task, int listId) {
-
-        taskRepository.updateStatusByTitle(listId, task.getTitle());
-
-    }
-
-    @Override
-    public void updateDueDate(Task task, int dueDate) {
-
-        taskRepository.updateDueDateByTitle(dueDate, task.getTitle());
-
-    }
-
-    @Override
-    public void assignUser(Task task, String user) {
-
-        taskRepository.updateUserByTitle(user, task.getTitle());
-
-    }
 
 }

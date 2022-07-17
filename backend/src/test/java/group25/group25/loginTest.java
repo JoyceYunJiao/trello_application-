@@ -4,6 +4,8 @@ import group25.group25.usermanagement.model.User;
 import group25.group25.usermanagement.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import group25.group25.usermanagement.serviceImplementation.UserServiceImpl;
@@ -11,10 +13,12 @@ import group25.group25.usermanagement.serviceImplementation.UserServiceImpl;
 @SpringBootTest
 public class loginTest {
 
+
     @Autowired
-    UserServiceImpl UserServices;
+    private UserRepository UserRepository;
     @Autowired
-    UserRepository UserRepository;
+    private UserServiceImpl UserServices;
+
 
 
     @Test

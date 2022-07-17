@@ -14,29 +14,29 @@ function RegisterForm(props){
         
         const form = event.currentTarget;
         console.log(form);
-        const passwordInput = form.children[4].value;
+        const password =passwordRef.current.value;
 
-        if(passwordInput.length < 8){
+        if(password.length < 8){
             alert("Password must be at least 8 characters long");
             return;
         }
 
-        if (passwordInput.search(/[a-z]/i) < 0) {
+        if (password.search(/[a-z]/i) < 0) {
             alert("Password must contain at least one lowercase letter");
             return;
         }
 
-        if (passwordInput.search(/[A-Z]/i) < 0) {
+        if (password.search(/[A-Z]/i) < 0) {
             alert("Password must contain at least one uppercase letter");
             return;
         }
 
-        if (passwordInput.search(/[0-9]/i) < 0) {
+        if (password.search(/[0-9]/i) < 0) {
             alert("Password must contain at least one number");
             return;
         }
 
-        if (passwordInput.search(/[^a-zA-Z0-9]/i) < 0) {
+        if (password.search(/[^a-zA-Z0-9]/i) < 0) {
             alert("Password must contain at least one special character");
             return;
         }
@@ -49,7 +49,6 @@ function RegisterForm(props){
         const lastName =lNameRef.current.value;
         const username =usernameRef.current.value;
         const email =emailRef.current.value;
-        const password =passwordRef.current.value;
         const answer = answerRef.current.value;
         const user = {firstName,lastName,username,email,password,answer}
         // console.log(user);

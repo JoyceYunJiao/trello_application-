@@ -22,13 +22,7 @@ public class ListController {
     public Set<List> getLists(@PathVariable("id") int id) {
         return listService.getListsByBoardId(id);
     }
-
-    //找到想要的listID
-//    @GetMapping(path = "/findCorrespondingListID")
-//    public Integer findCorrespondingListID(@RequestParam(name = "boardId") int boardId,@RequestParam(name = "title") String title){
-//        return listRepository.findCorrespondingListID(boardId,title);
-//    }
-
+    
     //use board ID and title name to find the list ID
     @GetMapping(path = "/findListIdByBoardId/{boardId}/{title}")
     public Integer findListIdByBoardId(@PathVariable("boardId") int boardId,@PathVariable("title") String title){

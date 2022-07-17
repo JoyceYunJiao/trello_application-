@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import List from "../components/boards/lists/List";
@@ -18,8 +18,19 @@ function BoardPage() {
     const getBoard = () => {
         axios.get(`http://localhost:8080/board/${boardId}`)
             .then(response => {
+                const board = response.data;
+                const task = [];
+
+                for (let i = 0; i < board.lists.length; i++) {
+                    const list = board.lists[i];
+                    for (let j = 0; j < list.tasks.length; j++) {
+                        task.push(list.tasks[j]);
+                    }
+                }
+                console.log(task);
                 
                 // TODO: Filter out lists by parameters in the URL
+                
 
                 setBoard(response.data);
                 setLoading(false);

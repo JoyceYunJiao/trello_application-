@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { React, useState } from "react";
+import TextField from "@mui/material/TextField";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +12,13 @@ function ListFilterForm() {
         // TODO: Redirect to this page with the filter parameters in the URL
     }
 
+    const [inputText, setInputText] = useState("");
+    let inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+
     return (
         <Card className="mb-5">
             <Card.Body>
@@ -18,7 +26,13 @@ function ListFilterForm() {
                 <Col>
                     <Form.Group controlId="formSearch">
                         <Form.Label>Search</Form.Label>
-                        <Form.Control type="text" placeholder="Enter a keyword" />
+                        <TextField
+                            id="outlined-basic"
+                            onChange={inputHandler}
+                            variant="outlined"
+                            fullWidth
+                            label="Search"
+                        />
                     </Form.Group>
                 </Col>
                 <Col>

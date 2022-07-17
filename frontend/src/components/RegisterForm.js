@@ -13,8 +13,8 @@ function RegisterForm(props){
         event.preventDefault();
         
         const form = event.currentTarget;
-        console.log(form);
-        const password =passwordRef.current.value;
+        const password = passwordRef.current.value;
+        console.log(password);
 
         if(password.length < 8){
             alert("Password must be at least 8 characters long");
@@ -49,9 +49,9 @@ function RegisterForm(props){
         const lastName =lNameRef.current.value;
         const username =usernameRef.current.value;
         const email =emailRef.current.value;
-        const answer = answerRef.current.value;
-        const user = {firstName,lastName,username,email,password,answer}
-        // console.log(user);
+        const securityAnswer = answerRef.current.value;
+        const user = {firstName,lastName,username,email,password,securityAnswer}
+        console.log(user);
         props.registerUser(user);
 
     }

@@ -22,9 +22,8 @@ export default function EditTask() {
     const [newDate, setNewDate] = useState(new Date());
 
     const { id, boardId,listId,taskID} = useParams();
-    let newBoardID=0;
+    const [newBoardID, setNewBoardID] = useState('');
 
-    //我现在需要获取该board中所有list的名字 从list调取
     //get the boardID and find all lists name in this board
     const fetchBoards = () => {
         axios.get(`http://localhost:8080/getLists/${boardId}`)
@@ -45,6 +44,13 @@ export default function EditTask() {
         console.log(event.target.value);
         setSelected(event.target.value);
     //   console.log("the selected task list is "+selected);
+        axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+event.target.value)
+        .then(response => {
+            console.log("return value is: "+response.data);
+            setNewBoardID(response.data);
+            console.log("return value22222 is: "+newBoardID);
+
+        });
 
     };
 
@@ -54,13 +60,33 @@ export default function EditTask() {
 
         console.log("new date is "+ newDate+", new list is "+selected);
 
-        axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+selected)
-        .then(response => {
-            console.log("return value is: "+response.data);
-            newBoardID = response.data;
-        });
+        // axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+selected)
+        // .then(response => {
+        //     console.log("return value is: "+response.data);
+        //     setNewBoardID(response.data);
+        //     console.log("return value22222 is: "+newBoardID);
 
+        // });
 
+        let id = taskID;
+        let date = newDate;
+        let listId = newBoardID
+
+        const newTaskDetail = {id, date};
+        const newTaskListDetail = {id, listId};
+
+        console.log(newTaskDetail);
+        console.log(newTaskListDetail);
+
+        //post method here!!!!
+        axios.post('http://localhost:8080/updateDueDate', newTaskDetail)
+        axios.post('http://localhost:8080/changeStatus', newTaskListDetail)
+
+        window.location.href = '/workspaces/'+id+"/"+boardId;
+
+        // navigate("/workspaces");
+        // window.location.reload();
+            
     }
 
 

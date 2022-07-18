@@ -5,6 +5,7 @@ import group25.group25.task.model.Task;
 import group25.group25.task.repository.TaskRepository;
 import group25.group25.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,14 +49,10 @@ public class TaskController {
         return  taskService.getTaskByTitle(title);
     }
 
-    @PostMapping(value = "changeStatus", consumes = "application/json", produces = "application/json")
-    public void changeStatus(@RequestParam(name = "task") Task task, @RequestParam(name = "listId") int list_id) {
-        taskService.changeStatus(task, list_id);
-    }
-
-    @PostMapping(value = "updateDueDate", consumes = "application/json", produces = "application/json")
-    public void updateDueDate(@RequestParam(name = "task") Task task, @RequestParam(name = "dueDate") int dueDate) {
-        taskService.updateDueDate(task, dueDate);
+    @Transactional
+    @PostMapping(value = "changeStatus", consumes = "application/json")
+    public void changeStatus(@RequestBody Task task) {
+        taskRepository.updateStatusById(task.getListId(),task.getId());
     }
 
     @PostMapping(value = "assignUser", consumes = "application/json", produces = "application/json")
@@ -63,6 +60,11 @@ public class TaskController {
         taskService.assignUser(task, user);
     }
 
+    @Transactional
+    @PostMapping(value = "updateDueDate", consumes = "application/json")
+    public void updateDueDate(@RequestBody Task task) {
+        taskRepository.updateDueDateById(task.getDate(), task.getId());
+    }
 
 
 }

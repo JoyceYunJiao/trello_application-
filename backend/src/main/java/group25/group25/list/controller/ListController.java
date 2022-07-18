@@ -22,7 +22,7 @@ public class ListController {
     public Set<List> getLists(@PathVariable("id") int id) {
         return listService.getListsByBoardId(id);
     }
-    
+
     //use board ID and title name to find the list ID
     @GetMapping(path = "/findListIdByBoardId/{boardId}/{title}")
     public Integer findListIdByBoardId(@PathVariable("boardId") int boardId,@PathVariable("title") String title){

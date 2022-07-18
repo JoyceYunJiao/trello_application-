@@ -33,7 +33,7 @@ function List(props) {
                 {/* New task button */}
                 <Button
                     variant="outline-primary"
-                    href={`./${boardId}/${props.list.id}/createTask`}
+                    href={`/workspaces/${id}/${boardId}/${props.list.id}/createTask`}
                     className="w-100 mt-3"
                 >
                     New Task

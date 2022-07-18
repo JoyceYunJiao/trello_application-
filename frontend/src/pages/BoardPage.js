@@ -63,7 +63,7 @@ function BoardPage() {
                 ))}
 
                 <div style={{minWidth:"13rem"}}>
-                    <Button variant="secondary" href={boardId+"/createList"} className="w-100">
+                    <Button variant="secondary" href={`/workspaces/${id}/${boardId}/createList`} className="w-100">
                         Create List
                     </Button>
                 </div>

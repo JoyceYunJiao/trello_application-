@@ -111,6 +111,7 @@ export default function EditTask() {
                     value= {boards.title}
                     control={<Radio />} 
                     onChange={handleChange}
+                    checked={boards.id == listId}
                     label= {boards.title}
             />
         ))}

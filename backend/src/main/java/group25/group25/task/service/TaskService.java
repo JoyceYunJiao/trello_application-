@@ -8,13 +8,6 @@ import java.util.List;
 @Service
 public interface TaskService {
 
-    public List<Task> getTaskByListId(Integer listId);
-
-    public List<Task> getTaskByTitle (String title);
-
-    public List<Task> getTaskByUser(String user);
-
-    public List<Task> getTaskByDueDate(String dueDate);
 
     public Task saveTask(Task task);
 

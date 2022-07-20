@@ -5,118 +5,111 @@ import group25.group25.task.repository.TaskRepository;
 import group25.group25.task.serviceimplementation.TaskServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 
 @SpringBootTest
 class TaskServiceImplTest {
 
-    @Autowired
-    private TaskRepository taskRepository;
-    @Autowired
+    @Mock
+
+    TaskRepository taskRepository;
+
+
+    @InjectMocks
+
     TaskServiceImpl taskService;
 
-    Task task1 = new Task("Clean room", "You gotta clean your room dude", null, 4, "2022-07-16 18:53:15");
-    Task task2 = new Task("Dirty Room", "Make it dirty again", null, 2, "2022-07-16 18:54:24");
-    Task task3 = new Task("And then do it again", "Yep", null, 2, "2022-07-16 18:54:38");
-    Task task4 = new Task("doneTest", "test123123123123", null, 3, "2022-07-16 19:57:22");
-    Task task5 = new Task("todo111", "todotest111", null, 1, "2022-07-16 21:08:24");
-
-    List<Task> list1 = new ArrayList<>();
-    List<Task> list2 = new ArrayList<>();
-
-
 
     @Test
-    void getTaskByListId() {
+    void testSaveTask() {
+        Task task = new Task();
+        when(taskRepository.save(any(Task.class))).thenReturn(new Task());
+        Task saved = taskService.saveTask(task);
 
-        list1.add(task2);
-        list1.add(task3);
+        Assertions.assertNotNull(saved);
+    }
 
-//        list2.add(task4);
+    @Test
+    void testFindByDueDate() {
+        List<Task> taskList = new ArrayList<>();
+        when(taskRepository.findByDueDate(anyString())).thenReturn(taskList);
+        List<Task> taskList1 = taskRepository.findByDueDate("2022-07-02 00:00:00");
+        Assertions.assertNotNull(taskList);
+        Assertions.assertNotNull(taskList1);
+    }
 
-
-
-//
-        Assertions.assertTrue(taskService.getTaskByListId(2).equals(list1));
-//        Assertions.assertEquals(taskService.getTaskByListId(3),list2);
+    @Test
+    void testFindByTitle() {
+        List<Task> taskList = new ArrayList<>();
+        when(taskRepository.findByTitle(anyString())).thenReturn(taskList);
+        List<Task> taskList1 = taskRepository.findByDueDate("todo111");
+        Assertions.assertNotNull(taskList);
+        Assertions.assertNotNull(taskList1);
 
     }
 
     @Test
-    void getTaskByTitle() {
-
-//        list1.add(task1);
-//        list2.add(task4);
-//        Assertions.assertEquals(taskService.getTaskByTitle("Clean room"), list1);
-//        Assertions.assertEquals(taskService.getTaskByTitle("todo111"),list2);
-
-    }
-
-    @Test
-    void getTaskByUser() {
-
-//        list1.add(task1);
-//        list1.add(task2);
-//        list1.add(task3);
-//        list1.add(task4);
-//        Assertions.assertEquals(taskService.getTaskByUser(null), list1);
+    void testFindByUser() {
+        List<Task> taskList = new ArrayList<>();
+        when(taskRepository.findByUser(anyString())).thenReturn(taskList);
+        List<Task> taskList1 = taskRepository.findByDueDate("Group25");
+        Assertions.assertNotNull(taskList);
+        Assertions.assertNotNull(taskList1);
 
     }
 
     @Test
-    void getTaskByDueDate() {
-
-//        list1.add(task1);
-//        list2.add(task2);
-//        Assertions.assertEquals(taskService.getTaskByDueDate("2022-07-16 18:53:15"), list1);
-//        Assertions.assertEquals(taskService.getTaskByDueDate("2022-07-16 18:54:24"), list2);
+    void testFindByListID() {
+        List<Task> taskList = new ArrayList<>();
+        when(taskRepository.findByListID(anyInt())).thenReturn(taskList);
+        List<Task> taskList1 = taskRepository.findByListID(1);
+        Assertions.assertNotNull(taskList);
+        Assertions.assertNotNull(taskList1);
 
     }
 
     @Test
-    void saveTask() {
+    void testUpdateStatusById() {
 
-//        Task task5 = new Task("todo222", "todotest222", null, 1, "2022-07-26 21:08:24");
-//        Assertions.assertEquals(taskService.saveTask(task5), task5);
-//        list1.add(task4);
-//        list1.add(task5);
-//        Assertions.assertEquals(taskService.getTaskByListId(1), list1);
-
-    }
-
-//    @Test
-//    void changeStatus() {
-//
-//        taskRepository.updateStatusByTitle(4,"You gotta clean your room dude");
-//        System.out.println(taskService.getTaskByTitle("You gotta clean your room dude").get(0).getListId());
-//
-////        taskService.changeStatus(task1, 4);
-////        Assertions.assertEquals(task1.getListId(), 4);
-//
-//
-//    }
-
-    @Test
-    void assignUser() {
-
-//        taskService.assignUser(task1,"aaa");
-//        Assertions.assertEquals(task1.getUser(), "aaa");
+        int newListId = 2;
+        int taskId = 5;
+        taskRepository.updateStatusById(newListId,taskId);
+        verify(taskRepository).updateStatusById(newListId,taskId);
 
 
     }
 
     @Test
-    void updateDueDate() {
+    void testUpdateDueDateById() {
 
-//        taskService.updateDueDate(task1,"2022-07-26 21:08:24");
-//        Assertions.assertEquals(task1.getDate(), "2022-07-26 21:08:24");
-
+        String newDueDate = "2022-07-19 05:22:00";
+        int taskId = 5;
+        taskRepository.updateDueDateById(newDueDate,taskId);
+        verify(taskRepository).updateDueDateById(newDueDate,taskId);
 
 
     }
+
+    @Test
+    void testUpdateUserById() {
+
+        String newUser = "csci3130";
+        int taskId = 5;
+        taskRepository.updateUserById(newUser,taskId);
+        verify(taskRepository).updateUserById(newUser,taskId);
+
+
+    }
+
+
 }

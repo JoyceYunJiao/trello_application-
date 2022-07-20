@@ -6,17 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PropaneSharp } from "@mui/icons-material";
 
 function ListFilterForm(props) {
-    const [startDate, setStartDate] = useState(new Date());
-    
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // TODO: Redirect to this page with the filter parameters in the URL
-    }
 
     return (
         <Card className="mb-5">
             <Card.Body>
-            <Form as={Row} onSubmit={handleSubmit}>
+            <Form as={Row}>
                 <Col>
                     <Form.Group controlId="formSearch">
                         <Form.Label>Search</Form.Label>
@@ -33,15 +27,22 @@ function ListFilterForm(props) {
                     <Form.Group controlId="formDateFilter">
                         <Form.Label>Date Filter</Form.Label>
                         <DatePicker
-                            selected={startDate}
-                            onChange={date => setStartDate(date)}
+                            selected={props.startDate}
+                            onChange={props.onDateChangeHandler}
                         />
                     </Form.Group>
                 </Col>
                 <Col>
-                    <Button variant="primary" type="submit" className="w-100 mt-4">
-                        Filter
-                    </Button>
+                    {/* Select dropdown for due date filtering */}
+                    <Form.Group controlId="formDueDateFilter">
+                        <Form.Label>Due Date Filter</Form.Label>
+                        <Form.Control as="select" onChange={props.onDueDateChangeHandler}>
+                            <option value="">Don't filter by date</option>
+                            <option value="on">Show only tasks due on date</option>
+                            <option value="before">Show only tasks due before date</option>
+                            <option value="after">Show only tasks due after date</option>
+                        </Form.Control>
+                    </Form.Group>
                 </Col>
             </Form>
             </Card.Body>

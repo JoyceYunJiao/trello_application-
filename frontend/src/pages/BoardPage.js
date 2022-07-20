@@ -17,11 +17,19 @@ function BoardPage() {
 
     // Filter stuff
     const [inputText, setInputText] = useState("");
+    const [startDate, setStartDate] = useState(new Date());
+    const [dueDateFilterMode, setDueDateFilterMode] = useState("");
     const inputHandler = (e) => {
         //convert input text to lower case
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
+    const dateChangeHandler = (date) => {
+        setStartDate(date);
+    };
+    const dueDateChangeHandler = (e) => {
+        setDueDateFilterMode(e.target.value);
+    }
 
     // Get board data from backend
     const getBoard = () => {
@@ -37,9 +45,7 @@ function BoardPage() {
                     }
                 }
                 console.log(task);
-                
-                // TODO: Filter out lists by parameters in the URL
-                
+
 
                 setBoard(response.data);
                 setLoading(false);
@@ -71,7 +77,12 @@ function BoardPage() {
             </Row>
 
             {/* Search filter */}
-            <ListFilterForm onSearchChangeHandler={inputHandler} />
+            <ListFilterForm
+                onSearchChangeHandler={inputHandler}
+                onDateChangeHandler={dateChangeHandler} 
+                onDueDateChangeHandler={dueDateChangeHandler}
+                startDate={startDate}
+            />
 
 
             {/* Board lists */}
@@ -81,6 +92,8 @@ function BoardPage() {
                         <List
                             list={list}
                             filterText={inputText}
+                            filterDate={startDate}
+                            filterDateMode={dueDateFilterMode}
                         />
                     </div>
                 ))}

@@ -19,7 +19,13 @@ function List(props) {
 
     const filterList = () => {
         setFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(props.filterText)));
-        // console.log(filteredTasks);
+        
+        // TODO: filter by due date
+        // props.filterDate is a Date object representing the user's selected date
+        // props.filterDateMode is a string representing the user's selected date mode
+        //      Can be "", "on", "before", or "after"
+
+        // use setFilteredTasks to update the filteredTasks, and that's all!
     }
 
     useEffect(() => {

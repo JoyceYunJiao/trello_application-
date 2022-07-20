@@ -18,6 +18,9 @@ function List(props) {
     }
 
     const filterList = () => {
+        console.log(tasks);
+        console.log(filteredTasks);
+        setFilteredTasks(tasks);
         setFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(props.filterText)));
         
         // TODO: filter by due date
@@ -29,16 +32,27 @@ function List(props) {
         let tempFilteredTasks = [];
         for (let i = 0; i < filteredTasks.length; i++) {
             const task = filteredTasks[i];
-            task.date
-            props.filterDate
-
-            // Make comparison
-            // Good?
+            
+            if (props.filterDateMode === "on") {
+                if (Date.parse(task.date) === props.filterDate.getTime()) {
+                    tempFilteredTasks.push(task);
+                }
+            } else if (props.filterDateMode === "before") {
+                if (Date.parse(task.date) < props.filterDate.getTime()) {
+                    tempFilteredTasks.push(task);
+                }
+            }
+            else if (props.filterDateMode === "after") {
+                if (Date.parse(task.date) > props.filterDate.getTime()) {
+                    tempFilteredTasks.push(task);
+                }
+            } else {
                 tempFilteredTasks.push(task);
-
+            }
         }
 
-        setFilteredTasks(tempFilteredTasks);
+        console.log("Filtered: "+ tempFilteredTasks);
+        // setFilteredTasks(tempFilteredTasks);
     }
 
     useEffect(() => {
@@ -48,7 +62,7 @@ function List(props) {
     // Filter on filterText change
     useEffect(() => {
         filterList();
-    }, [props.filterText]);
+    }, [props.filterText, props.filterDate, props.filterDateMode]);
 
     return (
         <Card className="bg-light">

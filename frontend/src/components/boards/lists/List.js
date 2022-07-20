@@ -20,18 +20,14 @@ function List(props) {
     }
 
     const filterList = (filterText, filterDate, filterDateMode) => {
-        console.log(filterText);
+        // Filter by search text
         setSearchFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(filterText)));
         
-        // TODO: filter by due date
+        // Filter by due date
         // props.filterDate is a Date object representing the user's selected date
         // props.filterDateMode is a string representing the user's selected date mode
         //      Can be "", "on", "before", or "after"
-
-        // use setFilteredTasks to update the filteredTasks, and that's all!
-        
         setDateFilteredTasks(tasks.filter(task => {
-            console.log(`Comapring ${task.date} to ${filterDate}`);
             if (filterDateMode === "") {
                 return true;
             } else if (filterDateMode === "on") {
@@ -60,6 +56,7 @@ function List(props) {
                 <Card.Text>{props.list.description}</Card.Text>
 
                 {/* Render all task cards */}
+                {/* Task cards are filtered by both search and date, get intersection and map those */}
                 {(searchFilteredTasks.filter(task => dateFilteredTasks.includes(task))).map(task => (
                     <TaskCard key={task.id} task={task} />
                 ))}

@@ -6,22 +6,22 @@ import TaskCard from "./TaskCard";
 
 function List(props) {
     const [tasks, setTasks] = useState([]);
-    const [filteredTasks, setFilteredTasks] = useState([]);
+    const [searchFilteredTasks, setSearchFilteredTasks] = useState([]);
+    const [dateFilteredTasks, setDateFilteredTasks] = useState([]);
     const { id, boardId } = useParams();
     
     const fetchTasks = () => {
         axios.get(`http://localhost:8080/getTaskByList/${props.list.id}`)
             .then(response => {
                 setTasks(response.data);
-                setFilteredTasks(response.data);
+                setSearchFilteredTasks(response.data);
+                setDateFilteredTasks(response.data);
             });
     }
 
-    const filterList = () => {
-        console.log(tasks);
-        console.log(filteredTasks);
-        setFilteredTasks(tasks);
-        setFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(props.filterText)));
+    const filterList = (filterText, filterDate, filterDateMode) => {
+        console.log(filterText);
+        setSearchFilteredTasks(tasks.filter(task => task.title.toLowerCase().includes(filterText)));
         
         // TODO: filter by due date
         // props.filterDate is a Date object representing the user's selected date
@@ -29,30 +29,18 @@ function List(props) {
         //      Can be "", "on", "before", or "after"
 
         // use setFilteredTasks to update the filteredTasks, and that's all!
-        let tempFilteredTasks = [];
-        for (let i = 0; i < filteredTasks.length; i++) {
-            const task = filteredTasks[i];
-            
-            if (props.filterDateMode === "on") {
-                if (Date.parse(task.date) === props.filterDate.getTime()) {
-                    tempFilteredTasks.push(task);
-                }
-            } else if (props.filterDateMode === "before") {
-                if (Date.parse(task.date) < props.filterDate.getTime()) {
-                    tempFilteredTasks.push(task);
-                }
+        
+        setDateFilteredTasks(tasks.filter(task => {
+            if (filterDateMode === "") {
+                return true;
+            } else if (filterDateMode === "on") {
+                return task.date === filterDate.toDateString();
+            } else if (filterDateMode === "before") {
+                return task.date < filterDate.toDateString();
+            } else if (props.filterDateMode === "after") {
+                return task.date > filterDate.toDateString();
             }
-            else if (props.filterDateMode === "after") {
-                if (Date.parse(task.date) > props.filterDate.getTime()) {
-                    tempFilteredTasks.push(task);
-                }
-            } else {
-                tempFilteredTasks.push(task);
-            }
-        }
-
-        console.log("Filtered: "+ tempFilteredTasks);
-        // setFilteredTasks(tempFilteredTasks);
+        }));
     }
 
     useEffect(() => {
@@ -61,7 +49,7 @@ function List(props) {
 
     // Filter on filterText change
     useEffect(() => {
-        filterList();
+        filterList(props.filterText, props.filterDate, props.filterDateMode);
     }, [props.filterText, props.filterDate, props.filterDateMode]);
 
     return (
@@ -71,7 +59,7 @@ function List(props) {
                 <Card.Text>{props.list.description}</Card.Text>
 
                 {/* Render all task cards */}
-                {filteredTasks.map(task => (
+                {(searchFilteredTasks.filter(task => dateFilteredTasks.includes(task))).map(task => (
                     <TaskCard key={task.id} task={task} />
                 ))}
 

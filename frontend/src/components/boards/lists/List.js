@@ -26,6 +26,19 @@ function List(props) {
         //      Can be "", "on", "before", or "after"
 
         // use setFilteredTasks to update the filteredTasks, and that's all!
+        let tempFilteredTasks = [];
+        for (let i = 0; i < filteredTasks.length; i++) {
+            const task = filteredTasks[i];
+            task.date
+            props.filterDate
+
+            // Make comparison
+            // Good?
+                tempFilteredTasks.push(task);
+
+        }
+
+        setFilteredTasks(tempFilteredTasks);
     }
 
     useEffect(() => {

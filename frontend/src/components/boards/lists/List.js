@@ -31,14 +31,15 @@ function List(props) {
         // use setFilteredTasks to update the filteredTasks, and that's all!
         
         setDateFilteredTasks(tasks.filter(task => {
+            console.log(`Comapring ${task.date} to ${filterDate}`);
             if (filterDateMode === "") {
                 return true;
             } else if (filterDateMode === "on") {
-                return task.date === filterDate.toDateString();
+                return Date.parse(task.date) === filterDate.getTime();
             } else if (filterDateMode === "before") {
-                return task.date < filterDate.toDateString();
+                return Date.parse(task.date) < filterDate.getTime();
             } else if (props.filterDateMode === "after") {
-                return task.date > filterDate.toDateString();
+                return Date.parse(task.date) > filterDate.getTime();
             }
         }));
     }

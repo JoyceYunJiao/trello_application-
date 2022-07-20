@@ -15,6 +15,7 @@ function TaskCard(props) {
                     <Card.Body>
                         <Card.Title>{props.task.title}</Card.Title>
                         <Card.Text>{props.task.description}</Card.Text>
+                        <Card.Text className="text-muted">{props.task.date}</Card.Text>
                     </Card.Body>
                 </Button>
             </Card>

@@ -1,140 +1,111 @@
-import React, {useState,useEffect} from 'react';
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useRef } from 'react';
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
-// import * as React from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-
-
-
 export default function EditTask() {
-    const [boards, setBoards] = useState([]);
+    // URL parameters
+    const { id, boardId, listId, taskID } = useParams();
 
+    // Navigate for redirect
+    const navigate = useNavigate();
 
-    const [selected, setSelected] = useState('');
-    const [newDate, setNewDate] = useState(new Date());
+    // State for task
+    const [lists, setLists] = useState([]);
+    const [newDate, setNewDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
 
-    const { id, boardId,listId,taskID} = useParams();
-    const [newBoardID, setNewBoardID] = useState('');
+    const newListId = useRef();
 
     //get the boardID and find all lists name in this board
-    const fetchBoards = () => {
+    const fetchLists = () => {
         axios.get(`http://localhost:8080/getLists/${boardId}`)
             .then(response => {
-                console.log(response.data);
-                setBoards(response.data);
-                // console.log("The getted boards are: "+boards[0].id)
+                setLists(response.data);
             });
     }
 
+    // Get lists on page load
     useEffect(() => {
-        fetchBoards();
+        fetchLists();
     }, []);
 
+    // Function for handling submit
+    function editTaskDetails(event){
+        event.preventDefault();
 
-
-    const handleChange = event => {
-        console.log(event.target.value);
-        setSelected(event.target.value);
-    //   console.log("the selected task list is "+selected);
-        axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+event.target.value)
-        .then(response => {
-            console.log("return value is: "+response.data);
-            setNewBoardID(response.data);
-            console.log("return value22222 is: "+newBoardID);
-
-        });
-
-    };
-
-    function editTaskDetails(){
-        // event.preventDefault();
         console.log("in edit Task details");
-
-        console.log("new date is "+ newDate+", new list is "+selected);
-
-        // axios.get("http://localhost:8080/findListIdByBoardId/"+boardId+"/"+selected)
-        // .then(response => {
-        //     console.log("return value is: "+response.data);
-        //     setNewBoardID(response.data);
-        //     console.log("return value22222 is: "+newBoardID);
-
-        // });
+        console.log(newDate);
 
         let id = taskID;
         let date = newDate;
-        let listId = newBoardID
+        let listId = +(newListId.current.value);
 
-        const newTaskDetail = {id, date};
-        const newTaskListDetail = {id, listId};
+        const taskDateBody = {id, date};
+        const taskListIdBody = {id, listId};
 
-        console.log(newTaskDetail);
-        console.log(newTaskListDetail);
+        console.log(taskDateBody);
+        console.log(taskListIdBody);
 
         //post method here!!!!
-        axios.post('http://localhost:8080/updateDueDate', newTaskDetail)
-        axios.post('http://localhost:8080/changeStatus', newTaskListDetail)
-
-        window.location.href = '/workspaces/'+id+"/"+boardId;
-
-        // navigate("/workspaces");
-        // window.location.reload();
-            
+        axios.post('http://localhost:8080/updateDueDate', taskDateBody)
+        .then(response => {
+            // Nested axios call for updating listId
+            axios.post('http://localhost:8080/changeStatus', taskListIdBody)
+            .then(response => {
+                navigate('/workspaces/'+id+"/"+boardId);
+            });
+        });    
     }
 
-
-
-
-
-
-        console.log("the selected date is "+newDate);
-        // console.log("the board id is "+boardId);
-
     return (
-        <FormControl onSubmit={editTaskDetails}>
-        <FormLabel id="demo-radio-buttons-group-label">Status</FormLabel>
-        <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="ToDo"
-            name="radio-buttons-group"
-        >
-        {boards.map(boards => (
-            <FormControlLabel
-                    key= {boards.title}
-                    value= {boards.title}
-                    control={<Radio />} 
-                    onChange={handleChange}
-                    // checked={boards.id == listId}
-                    label= {boards.title}
-            />
-        ))}
+        <Container>
+            <Button variant="primary" onClick={() => navigate('/workspaces/'+id+"/"+boardId)} className="m-4">
+                Back to Board
+            </Button>
 
-        </RadioGroup>
-        <Col>
-            <Form.Group controlId="formDateFilter">
-                <Form.Label>Date Filter</Form.Label>
-            </Form.Group>
-            <input type ="date" onChange={date => setNewDate(date.target.value)}></input>
-        </Col>
+            <Card>
+                <Card.Header>
+                    <h1>Edit Task</h1>
+                </Card.Header>
+                <Card.Body>
+                    <Form onSubmit={editTaskDetails}>
+                        <Row>
+                            <Col xs={8}>
+                                <Form.Group controlId="formListSelect">
+                                    <Row>
+                                        <Col xs={3}>
+                                            <FormLabel>Status</FormLabel>
+                                        </Col>
+                                        <Col>
+                                            <Form.Select ref={newListId}>
+                                                {lists.map(list => (
+                                                    <option
+                                                        key={list.id}
+                                                        value={list.id}
+                                                    >
+                                                        {list.title}
+                                                    </option>
+                                                ))}
+                                            </Form.Select>
+                                        </Col>
+                                    </Row>
+                                </Form.Group>
+                            </Col>
 
+                            <Col>
+                                <Form.Group controlId="formDateFilter">
+                                    <Form.Label className="m-2">Due Date</Form.Label>
+                                    <input type ="date" onChange={date => setNewDate(date.target.value)}></input>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                            
 
-        <Button variant="primary" type="submit" onClick={editTaskDetails}>Edit Task</Button>
-        
-        </FormControl>
-
-
-
-
-
-
-
-        
+                        <Button variant="primary" type="submit" className="m-4 w-50">Edit Task</Button>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 }

@@ -48,9 +48,6 @@ export default function EditTask() {
     function editTaskDetails(event){
         event.preventDefault();
 
-        console.log("in edit Task details");
-        console.log(newDate);
-
         let id = taskID;
         let date = newDate;
         let listId = +(newListId.current.value);
@@ -58,15 +55,11 @@ export default function EditTask() {
         const taskDateBody = {id, date};
         const taskListIdBody = {id, listId};
 
-        console.log(taskDateBody);
-        console.log(taskListIdBody);
-
         //post method here!!!!
         axios.post('http://localhost:8080/updateDueDate', taskDateBody)
         .then(response => {
             // Nested axios call for updating listId
             axios.post('http://localhost:8080/changeStatus', taskListIdBody)
-            .then(response => {
                 // Nested axios call for updating assignee
                 axios.post(`http://localhost:8080/assignTaskUser/${taskID}/${assigneeId.current.value}`)
                 .then(response => {

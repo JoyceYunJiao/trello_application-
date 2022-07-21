@@ -57,7 +57,7 @@ public class TaskController {
 
     @Transactional
     @PostMapping(value = "assignTaskUser/{taskId}/{userId}")
-    public void assignUser(@RequestParam("taskId") Integer taskId, @RequestParam("userId") Integer userId) {
+    public void assignUser(@PathVariable("taskId") Integer taskId, @PathVariable("userId") Integer userId) {
         taskRepository.updateUserById(userId,taskId);
     }
 

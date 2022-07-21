@@ -30,23 +30,23 @@ public class TaskController {
     }
 
     @GetMapping(value = "getTaskByList/{id}", produces = "application/json")
-    public List<Task> findByListID(@PathVariable("id") int list_id){
-        return  taskService.getTaskByListId(list_id);
+    public List<Task> findByListID(@PathVariable("id") Integer list_id){
+        return  taskRepository.findByListID(list_id);
     }
 
-    @GetMapping(value = "getTaskByDueDate/{DueDate}", consumes = "application/json", produces = "application/json")
-    public List<Task> findByDueDate(@PathVariable("DueDate") int dueDate){
-        return  taskService.getTaskByDueDate(dueDate);
+    @GetMapping(value = "getTaskByDueDate/{DueDate}", produces = "application/json")
+    public List<Task> findByDueDate(@PathVariable("DueDate") String dueDate){
+        return  taskRepository.findByDueDate(dueDate);
     }
 
-    @GetMapping(value = "getTaskByUser/{user}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByUser/{user}", produces = "application/json")
     public List<Task> findByUser(@PathVariable("user") String user){
-        return  taskService.getTaskByUser(user);
+        return  taskRepository.findByUser(user);
     }
 
-    @GetMapping(value = "getTaskByUser/{title}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "getTaskByTitle/{title}", produces = "application/json")
     public List<Task> findByTitle(@PathVariable("title") String title){
-        return  taskService.getTaskByTitle(title);
+        return  taskRepository.findByTitle(title);
     }
 
     @Transactional
@@ -55,9 +55,10 @@ public class TaskController {
         taskRepository.updateStatusById(task.getListId(),task.getId());
     }
 
-    @PostMapping(value = "assignUser", consumes = "application/json", produces = "application/json")
-    public void assignUser(@RequestParam(name = "task") Task task, @RequestParam(name = "user") String user) {
-        taskService.assignUser(task, user);
+    @Transactional
+    @PostMapping(value = "assignUser", consumes = "application/json")
+    public void assignUser(@RequestBody Task task) {
+        taskRepository.updateUserById(task.getUser(),task.getId());
     }
 
     @Transactional

@@ -43,6 +43,7 @@ public class Task {
         this.date = date;
     }
 
+
     public Task(){
 
     }

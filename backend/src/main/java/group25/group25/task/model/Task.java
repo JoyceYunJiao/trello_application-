@@ -35,11 +35,11 @@ public class Task {
     @JsonIgnore
     private List list;
 
-    public Task(String title, String description, String user, Integer list_id, String date) {
+    public Task(String title, String description, String user, Integer listId, String date) {
         this.title = title;
         this.description = description;
         this.user = user;
-        this.listId = list_id;
+        this.listId = listId;
         this.date = date;
     }
 
@@ -77,7 +77,7 @@ public class Task {
 
     public Integer getListId() { return listId; }
 
-    public void setListId(Integer list_id) { this.listId = list_id; }
+    public void setListId(Integer listId) { this.listId = listId; }
 
 
     public String getDate() { return date; }

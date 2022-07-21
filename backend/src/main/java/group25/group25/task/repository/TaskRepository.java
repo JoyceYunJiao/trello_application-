@@ -36,5 +36,13 @@ public interface TaskRepository extends JpaRepository<Task, Integer>{
     @Query("UPDATE Task t SET t.user =?1 WHERE t.title =?2")
     public void updateUserByTitle(String user, String title);
 
+    @Modifying
+    @Query("UPDATE Task t SET t.date =?1 WHERE t.id =?2")
+    public void updateDueDateById(String dueDate, Integer id);
+
+    @Modifying
+    @Query("UPDATE Task t SET t.listId =?1 WHERE t.id =?2")
+    public void updateStatusById(Integer listId, Integer id);
+
 
 }

@@ -5,6 +5,7 @@ import group25.group25.list.repository.ListRepository;
 import group25.group25.list.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
@@ -22,4 +23,10 @@ public class ListServiceImpl implements ListService {
     public List saveList(List list) {
         return listRepository.save(list);
     }
+
+    @Override
+    public Integer findCorrespondingListID( int boardId, String title){
+        return listRepository.findCorrespondingListID(boardId,title);
+    }
+
 }

@@ -60,6 +60,7 @@ export default function EditTask() {
         .then(response => {
             // Nested axios call for updating listId
             axios.post('http://localhost:8080/changeStatus', taskListIdBody)
+            .then(response => {
                 // Nested axios call for updating assignee
                 axios.post(`http://localhost:8080/assignTaskUser/${taskID}/${assigneeId.current.value}`)
                 .then(response => {

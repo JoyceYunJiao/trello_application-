@@ -64,10 +64,12 @@ export default function EditTask() {
                 // Nested axios call for updating assignee
                 axios.post(`http://localhost:8080/assignTaskUser/${taskID}/${assigneeId.current.value}`)
                 .then(response => {
-                    navigate('/workspaces/'+id+"/"+boardId);
+                    // navigate('/workspaces/'+id+"/"+boardId);
                 });
             });
-        });    
+        });   
+        navigate('/workspaces/'+id+"/"+boardId);
+ 
     }
 
     // When the page isn't loaded, show a loading message

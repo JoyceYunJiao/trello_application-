@@ -40,8 +40,8 @@ public class TaskController {
     }
 
     @GetMapping(value = "getTaskByUser/{user}", produces = "application/json")
-    public List<Task> findByUser(@PathVariable("user") String user){
-        return  taskRepository.findByUser(user);
+    public List<Task> findByUserId(@PathVariable("assigneeId") Integer assigneeId){
+        return taskRepository.findByAssigneeId(assigneeId);
     }
 
     @GetMapping(value = "getTaskByTitle/{title}", produces = "application/json")
@@ -56,9 +56,9 @@ public class TaskController {
     }
 
     @Transactional
-    @PostMapping(value = "assignUser", consumes = "application/json")
-    public void assignUser(@RequestBody Task task) {
-        taskRepository.updateUserById(task.getUser(),task.getId());
+    @PostMapping(value = "assignTaskUser/{taskId}/{userId}")
+    public void assignUser(@RequestParam("taskId") Integer taskId, @RequestParam("userId") Integer userId) {
+        taskRepository.updateUserById(userId,taskId);
     }
 
     @Transactional

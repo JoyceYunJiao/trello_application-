@@ -14,7 +14,7 @@ function NewListPage() {
 
     return (
         <Container>
-            <Button variant="secondary" href={"../"+boardId} className="my-2">
+            <Button variant="secondary" href={`/workspaces/${id}/${boardId}`} className="my-2">
                 Return to Board
             </Button>
             <h1>New List</h1>

@@ -16,6 +16,10 @@ function TaskCard(props) {
                         <Card.Title>{props.task.title}</Card.Title>
                         <Card.Text>{props.task.description}</Card.Text>
                         <Card.Text className="text-muted">{props.task.date}</Card.Text>
+                        {props.task.assignee &&
+                            <Card.Text className="text-muted">
+                                Assignee: {props.task.assignee.firstName} {props.task.assignee.lastName} ({props.task.assignee.username})
+                            </Card.Text>}
                     </Card.Body>
                 </Button>
             </Card>

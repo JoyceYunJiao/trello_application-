@@ -61,8 +61,8 @@ class TaskServiceImplTest {
     @Test
     void testFindByUser() {
         List<Task> taskList = new ArrayList<>();
-        when(taskRepository.findByUser(anyString())).thenReturn(taskList);
-        List<Task> taskList1 = taskRepository.findByDueDate("Group25");
+        when(taskRepository.findByAssigneeId(anyInt())).thenReturn(taskList);
+        List<Task> taskList1 = taskRepository.findByAssigneeId(0);
         Assertions.assertNotNull(taskList);
         Assertions.assertNotNull(taskList1);
 
@@ -102,11 +102,9 @@ class TaskServiceImplTest {
 
     @Test
     void testUpdateUserById() {
-
-        String newUser = "csci3130";
         int taskId = 5;
-        taskRepository.updateUserById(newUser,taskId);
-        verify(taskRepository).updateUserById(newUser,taskId);
+        taskRepository.updateUserById(0,taskId);
+        verify(taskRepository).updateUserById(0,taskId);
 
 
     }

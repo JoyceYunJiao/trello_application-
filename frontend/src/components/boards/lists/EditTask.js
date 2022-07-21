@@ -67,7 +67,11 @@ export default function EditTask() {
             // Nested axios call for updating listId
             axios.post('http://localhost:8080/changeStatus', taskListIdBody)
             .then(response => {
-                navigate('/workspaces/'+id+"/"+boardId);
+                // Nested axios call for updating assignee
+                axios.post(`http://localhost:8080/assignTaskUser/${taskID}/${assigneeId.current.value}`)
+                .then(response => {
+                    navigate('/workspaces/'+id+"/"+boardId);
+                });
             });
         });    
     }

@@ -2,6 +2,7 @@ package group25.group25.task.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import group25.group25.list.model.List;
+import group25.group25.usermanagement.model.User;
 import group25.group25.workspace.model.Workspace;
 
 import javax.persistence.*;
@@ -22,7 +23,11 @@ public class Task {
     private String description;
 
     @Column(name = "card_user")
-    private String user;
+    private Integer assigneeId;
+
+    @ManyToOne
+    @JoinColumn(name="card_user", insertable = false, updatable = false)
+    private User assignee;
 
     @Column(name = "list_id")
     private Integer listId;
@@ -35,12 +40,12 @@ public class Task {
     @JsonIgnore
     private List list;
 
-    public Task(String title, String description, String user, Integer listId, String date) {
+    public Task(String title, String description, Integer listId, String date, Integer assigneeId) {
         this.title = title;
         this.description = description;
-        this.user = user;
         this.listId = listId;
         this.date = date;
+        this.assigneeId = assigneeId;
     }
 
 
@@ -72,10 +77,6 @@ public class Task {
         this.description = description;
     }
 
-    public String getUser() { return user; }
-
-    public void setUser(String user) { this.user = user; }
-
     public Integer getListId() { return listId; }
 
     public void setListId(Integer listId) { this.listId = listId; }
@@ -91,6 +92,22 @@ public class Task {
 
     public void setList(List list) {
         this.list = list;
+    }
+
+    public Integer getAssigneeId() {
+        return assigneeId;
+    }
+
+    public void setAssigneeId(Integer assigneeId) {
+        this.assigneeId = assigneeId;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
     }
 }
 

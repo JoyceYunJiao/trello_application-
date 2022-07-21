@@ -1,5 +1,7 @@
 package group25.group25.usermanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import group25.group25.task.model.Task;
 import group25.group25.workspace.model.Workspace;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @ManyToMany(mappedBy = "assignedUsers")
+    @JsonIgnore
     private Set<Workspace> workspaces = new HashSet<>();
 
     @Id
@@ -34,6 +37,11 @@ public class User {
 
     @Column(name = "security_answer")
     private String answer;
+
+    @OneToMany
+    @JoinColumn(name = "card_user")
+    @JsonIgnore
+    private Set<Task> tasks;
 
     public User(String email, String firstName, String lastName, String password, String username, String answer) {
         this.email = email;
@@ -105,5 +113,17 @@ public class User {
 
     public void setSecurityAnswer(String securityAnswer) {
         this.answer = securityAnswer;
+    }
+
+    public void setWorkspaces(Set<Workspace> workspaces) {
+        this.workspaces = workspaces;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }

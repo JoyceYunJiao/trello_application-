@@ -12,21 +12,35 @@ export default function EditTask() {
     const navigate = useNavigate();
 
     // State for task
-    const [lists, setLists] = useState([]);
     const [newDate, setNewDate] = useState(new Date().toISOString().slice(0, 19).replace('T', ' '));
+    const [lists, setLists] = useState([]);
+    const [listsLoading, setListsLoading] = useState(true);
+    const [users, setUsers] = useState('');
+    const [usersLoading, setUsersLoading] = useState(true);
 
     const newListId = useRef();
+    const assigneeId = useRef();
 
     //get the boardID and find all lists name in this board
     const fetchLists = () => {
         axios.get(`http://localhost:8080/getLists/${boardId}`)
             .then(response => {
                 setLists(response.data);
+                setListsLoading(false);
+            });
+    }
+
+    const fetchUsers = () => {
+        axios.get(`http://localhost:8080/getAssignedUsers/${id}`)
+            .then(response => {
+                setUsers(response.data);
+                setUsersLoading(false);
             });
     }
 
     // Get lists on page load
     useEffect(() => {
+        fetchUsers();
         fetchLists();
     }, []);
 
@@ -58,6 +72,16 @@ export default function EditTask() {
         });    
     }
 
+    // When the page isn't loaded, show a loading message
+    if (listsLoading || usersLoading) {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
+    // When page is loaded, show the form page
     return (
         <Container>
             <Button variant="primary" onClick={() => navigate('/workspaces/'+id+"/"+boardId)} className="m-4">
@@ -70,6 +94,24 @@ export default function EditTask() {
                 </Card.Header>
                 <Card.Body>
                     <Form onSubmit={editTaskDetails}>
+                        {/* Assign User dropdown */}
+                        <Form.Group as={Row} controlId="formAssignee">
+                            <Form.Label column sm="2">
+                                Assignee
+                            </Form.Label>
+                            <Col sm="10">
+                                <Form.Control as="select" ref={assigneeId}>
+                                    <option>Select assignee</option>
+                                    {users.map(list => (
+                                        <option key={list.id} value={list.id}>
+                                            {list.firstName} {list.lastName} ({list.username})
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                            </Col>
+                        </Form.Group>
+
+                        {/* List status and Due Date */}
                         <Row>
                             <Col xs={8}>
                                 <Form.Group controlId="formListSelect">

@@ -17,7 +17,7 @@ function BoardCard(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant='contained' disableElevation href={id+"/"+props.board.id}>
+                <Button variant='contained' disableElevation href={"/workspaces"+"/"+id+"/"+props.board.id}>
                     View All Tasks
                 </Button>
 

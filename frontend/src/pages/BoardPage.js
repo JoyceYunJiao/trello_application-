@@ -66,7 +66,7 @@ function BoardPage() {
         <Container>
             <Row className="my-4">
                 <Col sm={2}>
-                    <Button href={"../"+id}>
+                    <Button href={"/workspaces/"+id}>
                         Return to Workspace
                     </Button>
                 </Col>
